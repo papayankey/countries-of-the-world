@@ -2,7 +2,7 @@
 
 An application to get information about countries in the world
 
-## Created with
+## Built with
 
 - React
 - Styled-Components

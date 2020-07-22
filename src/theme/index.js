@@ -17,9 +17,9 @@ const theme = {
     '19px',
     '21px',
     '23px',
-    // '27px',
-    // '35px',
-    // '58px',
+    '27px',
+    '35px',
+    '58px',
   ],
   colors: {
     white: 'hsl(0, 0%, 100%)',
@@ -63,6 +63,11 @@ const theme = {
     sm: '0 0 4px 2px hsl(0, 0%, 90%)',
     md: '0 0 6px 4px hsl(0, 0%, 90%)',
     lg: '0 0 8px 6px hsl(0, 0%, 90%)',
+  },
+  lineHeights: {
+    normal: 1,
+    wide: 1.25,
+    wider: 1.5,
   },
 };
 

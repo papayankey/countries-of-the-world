@@ -1,7 +1,13 @@
 const theme = {
   breakpoints: ['600px', '1000px', '1080px'],
-  fonts: 'Nunito Sans, sans-serif',
-  fontWeights: [300, 600, 800],
+  fonts: {
+    body: 'Nunito Sans, sans-serif',
+  },
+  fontWeights: {
+    extraLight: 300,
+    semiBold: 600,
+    extraBold: 800,
+  },
   fontSizes: [
     '10px',
     '12px',

@@ -2,11 +2,9 @@
 
 An application to get information about countries in the world
 
-## Built with
+## Demo
 
-- React
-- Styled-Components
-- Styled-System
+Application is in development
 
 ## Author
 

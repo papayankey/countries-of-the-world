@@ -1,12 +1,17 @@
 import React from 'react';
 
 import { AppBar, Search } from './components';
+import { Container, Flex } from './shared';
 
 function App() {
   return (
     <>
       <AppBar />
-      <Search />
+      <Container>
+        <Flex mt="2xl">
+          <Search />
+        </Flex>
+      </Container>
     </>
   );
 }

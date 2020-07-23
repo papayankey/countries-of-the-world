@@ -10,6 +10,7 @@ export const Box = styled('div')(
   css({
     margin: 0,
     minWidth: 0,
+    borderRadius: 'sm',
   }),
   compose(space, layout, backgroundColor, position, boxShadow, border)
 );

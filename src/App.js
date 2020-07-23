@@ -1,7 +1,13 @@
 import React from 'react';
 
+import AppBar from './components/AppBar';
+
 function App() {
-  return <h1>Rest Countries</h1>;
+  return (
+    <>
+      <AppBar />
+    </>
+  );
 }
 
 export default App;

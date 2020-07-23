@@ -56,7 +56,7 @@ const theme = {
     '5xl': '65px',
     '6xl': '80px',
   },
-  radii: ['0', '3px', '5px', '10px'],
+  radii: { none: 0, sm: '3px', md: '5px', lg: '10px' },
   shadows: {
     none: 'none',
     sm: '0 0 4px 2px hsl(0, 0%, 90%)',

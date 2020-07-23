@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import css from '@styled-system/css';
 
-export const CSSBaseline = createGlobalStyle`
-  ${css({
+export const CSSBaseline = createGlobalStyle(
+  css({
     html: {
       boxSizing: 'border-box',
       fontFamily: 'body',
@@ -39,5 +39,5 @@ export const CSSBaseline = createGlobalStyle`
       lineHeight: 'normal',
       backgroundColor: 'gray100',
     },
-  })}
-`;
+  })
+);

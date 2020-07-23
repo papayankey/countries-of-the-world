@@ -7,7 +7,7 @@ import { textColor } from '../customFns';
 
 export const Text = styled('p')(
   css({
-    fontWeight: 'extraLight',
+    fontWeight: 'semiBold',
     fontSize: 3,
     color: 'gray300',
   }),

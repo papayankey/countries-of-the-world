@@ -6,8 +6,8 @@ export function Container({ children, ...other }) {
   return (
     <Box
       height="100%"
-      width={[1, '80%', '60%']}
-      px={['lg', 'none']}
+      width={{ sm: 1, md: '80%', lg: '60%', xl: '50%' }}
+      px={['md', 0]}
       mx={[null, 'auto']}
       {...other}
     >

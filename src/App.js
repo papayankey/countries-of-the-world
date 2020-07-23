@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppBar, Search } from './components';
+import { AppBar, Search, Select } from './components';
 import { Container, Flex } from './shared';
 
 function App() {
@@ -8,8 +8,9 @@ function App() {
     <>
       <AppBar />
       <Container>
-        <Flex mt="2xl">
+        <Flex mt="2xl" justifyContent="Space-between" flexWrap="wrap">
           <Search />
+          <Select />
         </Flex>
       </Container>
     </>

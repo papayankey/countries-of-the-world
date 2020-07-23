@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import css from '@styled-system/css';
 
-export const CSSBaseline = createGlobalStyle(
+const CSSBaseline = createGlobalStyle(
   css({
     html: {
       boxSizing: 'border-box',
@@ -41,3 +41,5 @@ export const CSSBaseline = createGlobalStyle(
     },
   })
 );
+
+export default CSSBaseline;

@@ -2,9 +2,9 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import theme from '../theme';
-import { CSSBaseline } from './CSSBaseline';
+import CSSBaseline from './CSSBaseline';
 
-export function ThemeComponent({ children }) {
+function ThemeComponent({ children }) {
   return (
     <ThemeProvider theme={theme}>
       <CSSBaseline />
@@ -12,3 +12,5 @@ export function ThemeComponent({ children }) {
     </ThemeProvider>
   );
 }
+
+export default ThemeComponent;

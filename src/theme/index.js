@@ -59,9 +59,9 @@ const theme = {
   radii: { none: 0, sm: '3px', md: '5px', lg: '10px' },
   shadows: {
     none: 'none',
-    sm: '0 0 4px 2px hsl(0, 0%, 90%)',
-    md: '0 0 6px 4px hsl(0, 0%, 90%)',
-    lg: '0 0 8px 6px hsl(0, 0%, 90%)',
+    sm: '0 0 4px 2px hsl(0, 0%, 95%)',
+    md: '0 0 6px 4px hsl(0, 0%, 95%)',
+    lg: '0 0 8px 6px hsl(0, 0%, 95%)',
   },
   lineHeights: {
     normal: 1,

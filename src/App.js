@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { AppBar, Search, Select } from './components';
-import { Container, Flex } from './shared';
+import { AppBar, Search, Select, CardList } from './components';
+import { Container, Flex, Box } from './shared';
 
 function App() {
   return (
@@ -12,7 +12,9 @@ function App() {
           <Search />
           <Select />
         </Flex>
+        <CardList />
       </Container>
+      <Box height="lg" mt="2xl"></Box>
     </>
   );
 }

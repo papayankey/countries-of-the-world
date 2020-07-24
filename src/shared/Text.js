@@ -9,7 +9,7 @@ export const Text = styled('p')(
   css({
     fontWeight: 'semiBold',
     fontSize: 3,
-    color: 'gray300',
+    color: 'blue100',
   }),
   compose(typography, textColor)
 );

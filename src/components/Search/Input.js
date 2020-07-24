@@ -19,7 +19,11 @@ const InputBox = styled(Box)(
 
 export function Input() {
   return (
-    <Flex position="relative" alignItems="center" width={['100%', '250px']}>
+    <Flex
+      position="relative"
+      alignItems="center"
+      width={['100%', '250px', '350px']}
+    >
       <Box position="absolute" pl="md">
         <svg
           xmlns="http://www.w3.org/2000/svg"

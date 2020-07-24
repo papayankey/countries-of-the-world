@@ -5,7 +5,7 @@ function AppBar() {
   const [isDark, setDark] = useState(false);
 
   return (
-    <Box height="5xl" boxShadow="sm" bg="white" borderRadius="none">
+    <Box height="5xl" boxShadow="md" bg="white" borderRadius="none">
       <Container>
         <Flex height="100%" alignItems="center" justifyContent="space-between">
           <Text fontWeight="extraBold" fontSize={[3, 4]}>

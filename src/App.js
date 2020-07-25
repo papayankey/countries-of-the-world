@@ -1,21 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { AppBar, Search, Select, CardList } from './components';
-import { Container, Flex, Box } from './shared';
+import { AppBar } from './components';
+import { Countries, Country } from './pages';
 
 function App() {
   return (
-    <>
+    <Router>
       <AppBar />
-      <Container>
-        <Flex mt="2xl" justifyContent="Space-between" flexWrap="wrap">
-          <Search />
-          <Select />
-        </Flex>
-        <CardList />
-      </Container>
-      <Box height="lg" mt="2xl"></Box>
-    </>
+      <Switch>
+        <Route path="/country" component={Country} />
+        <Route path="/countries" component={Countries} />
+        <Route path="/" component={Countries} />
+      </Switch>
+    </Router>
   );
 }
 

@@ -31,6 +31,7 @@ const CSSBaseline = createGlobalStyle(
       fontSize: '100%',
       verticalAlign: 'baseline',
       background: 'transparent',
+      textDecoration: 'none',
     },
     'input, select': {
       verticalAlign: 'middle',

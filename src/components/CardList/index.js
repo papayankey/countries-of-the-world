@@ -6,31 +6,32 @@ import { Grid, Box } from '../../shared';
 import { data } from '../../data';
 
 function CardList() {
-  const [countryData, setCountryData] = useState([]);
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    function getCountryData(data) {
-      setCountryData(data);
-    }
-    getCountryData(data);
+    fetchCountries(data);
   });
+
+  const fetchCountries = data => {
+    setCountries(data);
+  };
 
   return (
     <Grid
-      mt="2xl"
+      mt="4xl"
       gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))"
       gridGap="40px"
     >
-      {countryData.length > 0 ? (
-        countryData.map(data => {
+      {countries.length > 0 ? (
+        countries.map(country => {
           return (
-            <Link to="/country">
-              <Card key={data.name} data={data} />
+            <Link key={country.name} to={`/countries/${country.name}`}>
+              <Card country={country} />
             </Link>
           );
         })
       ) : (
-        <Box as="p">No Data!</Box>
+        <Box as="p">Loading...</Box>
       )}
     </Grid>
   );

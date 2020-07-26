@@ -4,8 +4,8 @@ import PropType from 'prop-types';
 import { Box, Text } from '../../shared';
 import { useNumberFormat } from '../../hooks/useNumberFormat';
 
-export function Card({ data }) {
-  let { name, population, region, capital } = data;
+export function Card({ country }) {
+  let { name, population, region, capital } = country;
   population = useNumberFormat(population);
 
   return (
@@ -41,5 +41,5 @@ export function Card({ data }) {
 }
 
 Card.propType = {
-  data: PropType.object.isRequired,
+  country: PropType.object.isRequired,
 };

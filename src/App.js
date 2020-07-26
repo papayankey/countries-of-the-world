@@ -9,7 +9,7 @@ function App() {
     <Router>
       <AppBar />
       <Switch>
-        <Route path="/country" component={Country} />
+        <Route path="/countries/:name" component={Country} />
         <Route path="/countries" component={Countries} />
         <Route path="/" component={Countries} />
       </Switch>

@@ -27,6 +27,24 @@ const Span = styled(Text).attrs(() => ({
   })
 );
 
+const StyledBox = styled(Box)(
+  css({
+    backgroundColor: 'white',
+    boxShadow: 'sm',
+    paddingX: 'lg',
+    paddingY: 'sm',
+    marginBottom: 'md',
+    '& + &': {
+      marginLeft: 'md',
+    },
+    '@media and (max-width: "600px")': {
+      '&:last-child': {
+        marginLeft: 0,
+      },
+    },
+  })
+);
+
 function CardDetail() {
   let {
     name,
@@ -129,13 +147,15 @@ function CardDetail() {
           <Box mt="4xl">
             <Flex
               flexDirection={['column', 'row']}
-              alignItems={['none', 'center']}
+              alignItems={[null, 'baseline']}
             >
               <StyledText>Border Countries: </StyledText>
-              <Box mt={['lg', 0]} ml={[0, 'md']}>
+              <Flex mt={['lg', 0]} ml={[0, 'md']} flexWrap="wrap">
                 {borders &&
-                  borders.map((border, idx) => <Span key={idx}>{border}</Span>)}
-              </Box>
+                  borders.map((border, idx) => (
+                    <StyledBox key={idx}>{border}</StyledBox>
+                  ))}
+              </Flex>
             </Flex>
           </Box>
         </Flex>

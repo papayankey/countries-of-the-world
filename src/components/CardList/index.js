@@ -19,7 +19,7 @@ function CardList() {
   return (
     <Grid
       mt="4xl"
-      gridTemplateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+      gridTemplateColumns="repeat(auto-fill, minmax(250px, 1fr))"
       gridGap="40px"
     >
       {countries.length > 0 ? (

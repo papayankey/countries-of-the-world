@@ -4,5 +4,14 @@ import CSSBaseline from './CSSBaseline';
 import ThemeComponent from './ThemeComponent';
 import Select from './Select';
 import CardList from './CardList';
+import CardDetail from './CardDetail/CardDetail';
 
-export { Search, AppBar, CSSBaseline, ThemeComponent, Select, CardList };
+export {
+  Search,
+  AppBar,
+  CSSBaseline,
+  ThemeComponent,
+  Select,
+  CardList,
+  CardDetail,
+};

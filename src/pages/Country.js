@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { Text } from '../shared';
 import { Container } from '../shared';
+import { CardDetail, Navigation } from '../components/CardDetail';
 
 function Country() {
   return (
-    <Container>
-      <Text as="hi1">Country detail</Text>
+    <Container px={['xl', 0]}>
+      <Navigation />
+      <CardDetail />
     </Container>
   );
 }

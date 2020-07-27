@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
+import PropType from 'prop-types';
 
 import { useNumberFormat } from '../../hooks/useNumberFormat';
 
 import { Grid, Box, Text, Flex } from '../../shared';
-import { data } from '../../data';
+import { useQueryBorderName } from '../../hooks/useQueryBorderName';
 
 const StyledText = styled(Text)(
   css({
@@ -34,19 +35,13 @@ const StyledBox = styled(Box)(
     paddingX: 'lg',
     paddingY: 'sm',
     marginBottom: 'md',
-    '& + &': {
-      marginLeft: 'md',
-    },
-    '@media and (max-width: "600px")': {
-      '&:last-child': {
-        marginLeft: 0,
-      },
-    },
+    marginRight: 'md',
   })
 );
 
-function CardDetail() {
+export function Detail({ country }) {
   let {
+    flag,
     name,
     population,
     nativeName,
@@ -57,9 +52,10 @@ function CardDetail() {
     currencies,
     languages,
     borders,
-  } = data[0];
+  } = country;
 
   population = useNumberFormat(population);
+  borders = useQueryBorderName(borders);
 
   currencies = useMemo(() => {
     return currencies.reduce(
@@ -80,12 +76,18 @@ function CardDetail() {
       gridTemplateColumns={['1fr', null, '1fr 1fr']}
       gridColumnGap={[0, null, '60px']}
     >
-      <Box
-        position="relative"
-        p={['40%', '35%', '30%']}
-        mt="5xl"
-        bg="gray200"
-      ></Box>
+      <Box position="relative" p={['40%', '35%', '30%']} mt="5xl" bg="gray200">
+        <Box
+          as="img"
+          src={flag}
+          position="absolute"
+          top="0"
+          left="0"
+          width="100%"
+          height="100%"
+          style={{ objectFit: 'cover' }}
+        />
+      </Box>
       <Box width="100%" mt={[0, 0, '5xl']}>
         <Flex
           flexDirection="column"
@@ -94,7 +96,7 @@ function CardDetail() {
         >
           <Grid mt={[0, '4xl', 0]} gridTemplateColumns={['1fr', '1fr 1fr']}>
             <Box mt={['3xl', null, 0]} gridArea="1/1/2/2">
-              <Text as="h2" fontSize="4" fontWeight="extraBold">
+              <Text as="h2" fontSize="5" fontWeight="extraBold">
                 {name}
               </Text>
               <Box mt="2xl">
@@ -123,24 +125,21 @@ function CardDetail() {
             >
               <StyledText>
                 Top Level Domain:{' '}
-                {topLevelDomain &&
-                  topLevelDomain.map((domain, idx) => (
-                    <Span key={idx}>{domain}</Span>
-                  ))}
+                {topLevelDomain.map((domain, idx) => (
+                  <Span key={idx}>{domain}</Span>
+                ))}
               </StyledText>
               <StyledText>
                 Currencies:{' '}
-                {currencies &&
-                  currencies.map((currency, idx) => (
-                    <Span key={idx}>{currency}</Span>
-                  ))}
+                {currencies.map((currency, idx) => (
+                  <Span key={idx}>{currency}</Span>
+                ))}
               </StyledText>
               <StyledText>
                 Languages:{' '}
-                {languages &&
-                  languages.map((language, idx) => (
-                    <Span key={idx}>{language}</Span>
-                  ))}
+                {languages.map((language, idx) => (
+                  <Span key={idx}>{language}</Span>
+                ))}
               </StyledText>
             </Box>
           </Grid>
@@ -149,12 +148,13 @@ function CardDetail() {
               flexDirection={['column', 'row']}
               alignItems={[null, 'baseline']}
             >
-              <StyledText>Border Countries: </StyledText>
-              <Flex mt={['lg', 0]} ml={[0, 'md']} flexWrap="wrap">
-                {borders &&
-                  borders.map((border, idx) => (
-                    <StyledBox key={idx}>{border}</StyledBox>
-                  ))}
+              <Flex flex="auto 0 0">
+                <StyledText>Border Countries: </StyledText>
+              </Flex>
+              <Flex mt={['lg', 0]} ml={[0, 'lg']} flexWrap="wrap">
+                {borders.map((border, idx) => (
+                  <StyledBox key={idx}>{border}</StyledBox>
+                ))}
               </Flex>
             </Flex>
           </Box>
@@ -165,8 +165,6 @@ function CardDetail() {
   );
 }
 
-// CardDetail.propType = {
-//   country: PropType.array.isRequired,
-// };
-
-export default CardDetail;
+Detail.propType = {
+  country: PropType.object.isRequired,
+};

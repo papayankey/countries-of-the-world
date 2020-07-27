@@ -1,7 +1,9 @@
 import React from 'react';
 
+import CardDetail, {
+  NavigateBack as Navigation,
+} from '../components/CardDetail';
 import { Container } from '../shared';
-import { CardDetail, Navigation } from '../components/CardDetail';
 
 function Country() {
   return (

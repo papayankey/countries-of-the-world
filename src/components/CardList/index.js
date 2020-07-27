@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 import { Card } from './Card';
 import { Grid, Box } from '../../shared';
 
-import { data } from '../../data';
-
 function CardList() {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    fetchCountries(data);
-  });
+    fetchCountries();
+  }, []);
 
-  const fetchCountries = data => {
+  async function fetchCountries() {
+    const response = await fetch('https://restcountries.eu/rest/v2/all');
+    const data = await response.json();
     setCountries(data);
-  };
+  }
 
   return (
     <Grid

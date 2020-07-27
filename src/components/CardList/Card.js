@@ -5,7 +5,7 @@ import { Box, Text } from '../../shared';
 import { useNumberFormat } from '../../hooks/useNumberFormat';
 
 export function Card({ country }) {
-  let { name, population, region, capital } = country;
+  let { flag, name, population, region, capital } = country;
   population = useNumberFormat(population);
 
   return (
@@ -17,7 +17,18 @@ export function Card({ country }) {
       width={['80%', 'auto']}
       mx={['auto', 0]}
     >
-      <Box position="relative" p="30%" bg="gray300" borderRadius="none"></Box>
+      <Box position="relative" p="30%" bg="gray300" borderRadius="none">
+        <Box
+          as="img"
+          src={flag}
+          position="absolute"
+          top="0"
+          left="0"
+          width="100%"
+          height="100%"
+          style={{ objectFit: 'cover' }}
+        />
+      </Box>
       <Box px="xl" py="4xl">
         <Text as="h2" fontWeight="Bolder" fontSize="6">
           {name}

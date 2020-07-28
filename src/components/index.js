@@ -5,6 +5,7 @@ import ThemeComponent from './ThemeComponent';
 import Select from './Select';
 import CardList from './CardList';
 import CardDetail from './CardDetail';
+import Pagination from './Pagination';
 
 export {
   Search,
@@ -14,4 +15,5 @@ export {
   Select,
   CardList,
   CardDetail,
+  Pagination,
 };

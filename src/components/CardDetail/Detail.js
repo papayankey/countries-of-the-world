@@ -76,7 +76,7 @@ export function Detail({ country }) {
       gridTemplateColumns={['1fr', null, '1fr 1fr']}
       gridColumnGap={[0, null, '60px']}
     >
-      <Box position="relative" p={['40%', '35%', '30%']} mt="5xl" bg="gray200">
+      <Box position="relative" p={['40%', '35%', '30%']} mt="5xl" bg="gray100">
         <Box
           as="img"
           src={flag}

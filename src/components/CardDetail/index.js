@@ -21,7 +21,12 @@ function CardDetail() {
     setCountry(data[0]);
   }
 
-  if (Object.keys(country).length <= 0) return <Box as="p">Loading...</Box>;
+  if (Object.keys(country).length <= 0)
+    return (
+      <Box as="p" mt="4xl">
+        Loading...
+      </Box>
+    );
 
   return <Detail country={country} />;
 }

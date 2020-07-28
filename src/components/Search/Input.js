@@ -22,7 +22,7 @@ export function Input() {
     <Flex
       position="relative"
       alignItems="center"
-      width={['100%', '250px', '350px']}
+      width={['100%', '250px', '400px']}
     >
       <Box position="absolute" pl="md">
         <svg

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropType from 'prop-types';
 
-import { Box, Text } from '../../shared';
-import { useNumberFormat } from '../../hooks/useNumberFormat';
+import { Box, Text } from '../shared';
+import { useNumberFormat } from '../hooks';
 
-export function Card({ country }) {
+function Card({ country }) {
   let { flag, name, population, region, capital } = country;
   population = useNumberFormat(population);
 
@@ -21,11 +21,13 @@ export function Card({ country }) {
         <Box
           as="img"
           src={flag}
+          alt={name + ' flag'}
           position="absolute"
           top="0"
           left="0"
           width="100%"
           height="100%"
+          borderRadius="none"
           style={{ objectFit: 'cover' }}
         />
       </Box>
@@ -54,3 +56,5 @@ export function Card({ country }) {
 Card.propType = {
   country: PropType.object.isRequired,
 };
+
+export default Card;

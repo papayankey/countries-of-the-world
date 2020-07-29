@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
 
-import { Box, Flex } from '../../shared';
+import { Box, Flex } from '../shared';
 
-const InputBox = styled(Box)(
+const Input = styled(Box)(
   css({
     width: '100%',
     boxShadow: 'sm',
@@ -17,7 +17,7 @@ const InputBox = styled(Box)(
   })
 );
 
-export function Input() {
+function Search() {
   return (
     <Flex
       position="relative"
@@ -54,7 +54,9 @@ export function Input() {
           />
         </svg>
       </Box>
-      <InputBox as="input" placeholder="Search for countries ..." />
+      <Input as="input" placeholder="Search for countries ..." />
     </Flex>
   );
 }
+
+export default Search;

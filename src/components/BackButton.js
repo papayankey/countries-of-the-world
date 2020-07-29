@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Flex, Box, Text } from '../../shared';
+import { Flex, Box, Text } from '../shared';
 
-export function NavigateBack() {
+function BackButton() {
   return (
     <Link to="/">
       <Flex
@@ -54,3 +54,5 @@ export function NavigateBack() {
     </Link>
   );
 }
+
+export default BackButton;

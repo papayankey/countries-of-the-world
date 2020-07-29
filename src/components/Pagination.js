@@ -20,7 +20,12 @@ const StyledButton = styled(Box).attrs(() => ({
   })
 );
 
-function Pagination({ totalCountries, pageNumber, paginate }) {
+function Pagination({
+  totalCountries,
+  pageNumber,
+  countriesPerPage,
+  paginate,
+}) {
   const handlePrevPage = () => {
     if (pageNumber > 1) {
       paginate(pageNumber - 1);
@@ -28,7 +33,7 @@ function Pagination({ totalCountries, pageNumber, paginate }) {
   };
 
   const handleNextPage = () => {
-    if (pageNumber < totalCountries) {
+    if (pageNumber * countriesPerPage < totalCountries) {
       paginate(pageNumber + 1);
     }
   };
@@ -38,7 +43,7 @@ function Pagination({ totalCountries, pageNumber, paginate }) {
       <StyledButton
         style={{ borderRight: 'none' }}
         onClick={handlePrevPage}
-        disabled={pageNumber === 1 ? 'true' : null}
+        disabled={pageNumber === 1 ? true : null}
       >
         <Text
           fontSize="lg"
@@ -50,12 +55,16 @@ function Pagination({ totalCountries, pageNumber, paginate }) {
       </StyledButton>
       <StyledButton
         onClick={handleNextPage}
-        disabled={pageNumber === totalCountries ? 'true' : null}
+        disabled={
+          pageNumber * countriesPerPage === totalCountries ? true : null
+        }
       >
         <Text
           fontSize="lg"
           fontWeight="extraLight"
-          color={pageNumber === totalCountries ? 'gray200' : null}
+          color={
+            pageNumber * countriesPerPage === totalCountries ? 'gray200' : null
+          }
         >
           Next
         </Text>

@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import css from '@styled-system/css';
 import PropType from 'prop-types';
 
-import { useNumberFormat } from '../../hooks/useNumberFormat';
-
-import { Grid, Box, Text, Flex } from '../../shared';
-import { useQueryBorderName } from '../../hooks/useQueryBorderName';
+import { useNumberFormat, useQueryBorderName } from '../hooks';
+import { Grid, Box, Text, Flex } from '../shared';
 
 const StyledText = styled(Text)(
   css({
@@ -39,7 +37,7 @@ const StyledBox = styled(Box)(
   })
 );
 
-export function Detail({ country }) {
+function CardDetail({ country }) {
   let {
     flag,
     name,
@@ -165,6 +163,8 @@ export function Detail({ country }) {
   );
 }
 
-Detail.propType = {
+CardDetail.propType = {
   country: PropType.object.isRequired,
 };
+
+export default CardDetail;

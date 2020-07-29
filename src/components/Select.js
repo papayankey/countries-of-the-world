@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
+import PropType from 'prop-types';
+
 import { Box, Text, Flex } from '../shared';
 
 const StyledList = styled(Text)(
@@ -16,13 +18,13 @@ const StyledList = styled(Text)(
   })
 );
 
-function Select() {
-  const [isOpen, setOpen] = useState(false);
+function Select({ handleFilterByRegion }) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Box position="relative">
       <Flex
-        onClick={() => setOpen(!isOpen)}
+        onClick={() => setIsOpen(!isOpen)}
         boxShadow="sm"
         bg="white"
         width="200px"
@@ -33,7 +35,7 @@ function Select() {
         justifyContent="space-between"
         style={{ cursor: 'pointer' }}
       >
-        <Text>Filter by Region</Text>
+        <Text color="gray300">Filter by Region</Text>
         <Box mt="sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -66,10 +68,17 @@ function Select() {
           boxShadow="sm"
           p="lg"
         >
-          {['Africa', 'America', 'Asia', 'Europe', 'Oceania'].map(
-            (item, index) => (
-              <StyledList key={index} as="li">
-                {item}
+          {['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'].map(
+            (region, idx) => (
+              <StyledList
+                key={idx}
+                as="li"
+                onClick={() => {
+                  handleFilterByRegion(region);
+                  setIsOpen(!isOpen);
+                }}
+              >
+                {region}
               </StyledList>
             )
           )}
@@ -78,5 +87,9 @@ function Select() {
     </Box>
   );
 }
+
+Select.propType = {
+  handleFilterByRegion: PropType.func.isRequired,
+};
 
 export default Select;

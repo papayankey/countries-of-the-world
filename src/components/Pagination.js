@@ -27,10 +27,10 @@ const StyledButton = styled(Box).attrs(() => ({
   })
 );
 
-function Pagination({ totalCountries, totalPerPage, paginate }) {
+function Pagination({ data, totalPages, currentPage, onChangePage }) {
   const pages = [];
 
-  for (let i = 1; i <= Math.ceil(totalCountries / totalPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(data / totalPages); i++) {
     pages.push(i);
   }
 
@@ -39,8 +39,11 @@ function Pagination({ totalCountries, totalPerPage, paginate }) {
       {pages.map(number => (
         <StyledButton
           key={number}
-          onClick={() => paginate(number)}
+          onClick={() => onChangePage(number)}
           marginBottom={['md', null]}
+          style={{
+            backgroundColor: currentPage === number ? 'hsl(0, 0%, 90%)' : null,
+          }}
         >
           <Text fontSize="lg" fontWeight="extraLight">
             {number}
@@ -52,9 +55,10 @@ function Pagination({ totalCountries, totalPerPage, paginate }) {
 }
 
 Pagination.propType = {
-  totalCountries: PropType.number.isRequired,
-  totalPerPage: PropType.number.isRequired,
-  paginate: PropType.func.isRequired,
+  data: PropType.number.isRequired,
+  totalPages: PropType.number.isRequired,
+  currentPage: PropType.number.isRequired,
+  changePage: PropType.func.isRequired,
 };
 
 export default Pagination;

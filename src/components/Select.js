@@ -9,16 +9,15 @@ const StyledList = styled(Text)(
   css({
     listStyle: 'none',
     cursor: 'pointer',
-    '& + &': {
-      marginTop: 'lg',
-    },
+    paddingY: 'md',
+    paddingLeft: 'lg',
     '&:hover': {
-      color: 'gray200',
+      backgroundColor: 'gray200',
     },
   })
 );
 
-function Select({ handleFilterByRegion }) {
+function Select({ onChangeRegion }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -42,18 +41,14 @@ function Select({ handleFilterByRegion }) {
             width="16"
             height="16"
             viewBox="0 0 512 512"
+            style={{ transform: isOpen ? 'rotate(180deg)' : null }}
           >
-            {isOpen ? (
-              <path
-                style={{ fill: 'hsl(0, 0%, 52%)' }}
-                d="M98,190.06,237.78,353.18a24,24,0,0,0,36.44,0L414,190.06c13.34-15.57,2.28-39.62-18.22-39.62H116.18C95.68,150.44,84.62,174.49,98,190.06Z"
-              />
-            ) : (
-              <path
-                style={{ fill: 'hsl(0, 0%, 52%)' }}
-                d="M414,321.94,274.22,158.82a24,24,0,0,0-36.44,0L98,321.94c-13.34,15.57-2.28,39.62,18.22,39.62H395.82C416.32,361.56,427.38,337.51,414,321.94Z"
-              />
-            )}
+            <path
+              style={{
+                fill: 'hsl(0, 0%, 52%)',
+              }}
+              d="M414,321.94,274.22,158.82a24,24,0,0,0-36.44,0L98,321.94c-13.34,15.57-2.28,39.62,18.22,39.62H395.82C416.32,361.56,427.38,337.51,414,321.94Z"
+            />
           </svg>
         </Box>
       </Flex>
@@ -61,21 +56,21 @@ function Select({ handleFilterByRegion }) {
         <Box
           as="ul"
           position="absolute"
+          left="0"
           zIndex="2"
           width="100%"
           bg="white"
           mt="md"
           boxShadow="sm"
-          p="lg"
         >
           {['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'].map(
-            (region, idx) => (
+            region => (
               <StyledList
-                key={idx}
+                key={region}
                 as="li"
                 onClick={() => {
-                  handleFilterByRegion(region);
-                  setIsOpen(!isOpen);
+                  onChangeRegion(region);
+                  setIsOpen(false);
                 }}
               >
                 {region}
@@ -89,7 +84,7 @@ function Select({ handleFilterByRegion }) {
 }
 
 Select.propType = {
-  handleFilterByRegion: PropType.func.isRequired,
+  onChangeRegion: PropType.func.isReequired,
 };
 
 export default Select;

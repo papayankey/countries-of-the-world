@@ -17,64 +17,43 @@ const StyledButton = styled(Box).attrs(() => ({
     borderStyle: 'solid',
     borderColor: 'gray200',
     borderRadius: 'none',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: 'gray200',
+    },
+    '&:not(:last-of-type)': {
+      borderRight: 'none',
+    },
   })
 );
 
-function Pagination({
-  totalCountries,
-  pageNumber,
-  countriesPerPage,
-  paginate,
-}) {
-  const handlePrevPage = () => {
-    if (pageNumber > 1) {
-      paginate(pageNumber - 1);
-    }
-  };
+function Pagination({ totalCountries, totalPerPage, paginate }) {
+  const pages = [];
 
-  const handleNextPage = () => {
-    if (pageNumber * countriesPerPage < totalCountries) {
-      paginate(pageNumber + 1);
-    }
-  };
+  for (let i = 1; i <= Math.ceil(totalCountries / totalPerPage); i++) {
+    pages.push(i);
+  }
 
   return (
-    <Flex my="5xl" justifyContent="center">
-      <StyledButton
-        style={{ borderRight: 'none' }}
-        onClick={handlePrevPage}
-        disabled={pageNumber === 1 ? true : null}
-      >
-        <Text
-          fontSize="lg"
-          fontWeight="extraLight"
-          color={pageNumber === 1 ? 'gray200' : null}
+    <Flex my="5xl" justifyContent="center" flexWrap="wrap">
+      {pages.map(number => (
+        <StyledButton
+          key={number}
+          onClick={() => paginate(number)}
+          marginBottom={['md', null]}
         >
-          Previous
-        </Text>
-      </StyledButton>
-      <StyledButton
-        onClick={handleNextPage}
-        disabled={
-          pageNumber * countriesPerPage === totalCountries ? true : null
-        }
-      >
-        <Text
-          fontSize="lg"
-          fontWeight="extraLight"
-          color={
-            pageNumber * countriesPerPage === totalCountries ? 'gray200' : null
-          }
-        >
-          Next
-        </Text>
-      </StyledButton>
+          <Text fontSize="lg" fontWeight="extraLight">
+            {number}
+          </Text>
+        </StyledButton>
+      ))}
     </Flex>
   );
 }
 
 Pagination.propType = {
-  currentPage: PropType.number.isRequired,
+  totalCountries: PropType.number.isRequired,
+  totalPerPage: PropType.number.isRequired,
   paginate: PropType.func.isRequired,
 };
 

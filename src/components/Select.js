@@ -17,7 +17,7 @@ const StyledList = styled(Text)(
   })
 );
 
-function Select({ onChangeRegion }) {
+function Select({ onChangeRegion, currentRegion }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -72,6 +72,10 @@ function Select({ onChangeRegion }) {
                   onChangeRegion(region);
                   setIsOpen(false);
                 }}
+                style={{
+                  backgroundColor:
+                    currentRegion === region ? 'hsl(0, 0%, 90%)' : null,
+                }}
               >
                 {region}
               </StyledList>
@@ -85,6 +89,7 @@ function Select({ onChangeRegion }) {
 
 Select.propType = {
   onChangeRegion: PropType.func.isReequired,
+  currentRegion: PropType.func,
 };
 
 export default Select;

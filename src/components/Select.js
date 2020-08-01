@@ -27,8 +27,7 @@ function Select({ onChangeRegion, currentRegion }) {
         boxShadow="sm"
         bg="white"
         width="200px"
-        py="md"
-        px="lg"
+        p="lg"
         mt={['4xl', 0]}
         alignItems="center"
         justifyContent="space-between"

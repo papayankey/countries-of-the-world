@@ -1,25 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
 import PropType from 'prop-types';
 
 import { Box, Flex, Text } from '../shared';
+import { ThemeContext } from '../components';
 
-const StyledButton = styled(Box).attrs(() => ({
-  as: 'button',
-}))(
+const StyledButton = styled(Box)(({ isDark }) =>
   css({
+    outline: 'none',
     appearance: 'none',
     paddingY: 'md',
     paddingX: 'lg',
-    backgroundColor: 'white',
+    backgroundColor: isDark ? 'blue100' : 'white',
+    borderColor: isDark ? 'blue200' : 'gray200',
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: 'gray200',
     borderRadius: 'none',
     cursor: 'pointer',
     '&:hover': {
-      backgroundColor: 'gray200',
+      backgroundColor: isDark ? 'blue200' : 'gray200',
     },
     '&:not(:last-of-type)': {
       borderRight: 'none',
@@ -28,6 +28,7 @@ const StyledButton = styled(Box).attrs(() => ({
 );
 
 function Pagination({ data, totalPages, currentPage, onChangePage }) {
+  const isDark = useContext(ThemeContext);
   const pages = [];
 
   for (let i = 1; i <= Math.ceil(data / totalPages); i++) {
@@ -38,14 +39,30 @@ function Pagination({ data, totalPages, currentPage, onChangePage }) {
     <Flex my="5xl" justifyContent="center" flexWrap="wrap">
       {pages.map(number => (
         <StyledButton
+          isDark={isDark}
           key={number}
           onClick={() => onChangePage(number)}
           marginBottom={['md', null]}
           style={{
-            backgroundColor: currentPage === number ? 'hsl(0, 0%, 90%)' : null,
+            backgroundColor:
+              currentPage === number
+                ? isDark
+                  ? 'hsl(207, 26%, 17%)'
+                  : 'hsl(0, 0%, 90%)'
+                : null,
+            borderColor:
+              currentPage === number
+                ? isDark
+                  ? 'hsl(209, 23%, 22%)'
+                  : null
+                : null,
           }}
         >
-          <Text fontSize="lg" fontWeight="extraLight">
+          <Text
+            fontSize="lg"
+            fontWeight="extraLight"
+            color={isDark ? 'white' : null}
+          >
             {number}
           </Text>
         </StyledButton>

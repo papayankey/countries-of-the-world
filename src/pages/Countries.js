@@ -104,7 +104,7 @@ function Countries() {
     <Container>
       <Flex mt="3xl" justifyContent="Space-between" flexWrap="wrap">
         <Search onSearch={onSearch} />
-        <Select onChangeRegion={changeRegion} currentRegion={currentRegion} />
+        <Select onChangeRegion={changeRegion} />
       </Flex>
       {isLoading && (
         <Box as="p" mt="4xl">

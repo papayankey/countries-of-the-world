@@ -1,50 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
 import PropType from 'prop-types';
 
 import { Box, Text, Flex } from '../shared';
+import { ThemeContext } from '../components';
 
-const StyledList = styled(Text)(
+const StyledList = styled(Text)(({ isDark }) =>
   css({
+    color: isDark ? 'gray100' : 'gray300',
     listStyle: 'none',
     cursor: 'pointer',
     paddingY: 'md',
     paddingLeft: 'lg',
     '&:hover': {
-      backgroundColor: 'gray200',
+      backgroundColor: isDark ? 'blue200' : 'gray200',
     },
   })
 );
 
-function Select({ onChangeRegion, currentRegion }) {
+function Select({ onChangeRegion }) {
   const [isOpen, setIsOpen] = useState(false);
+  const isDark = useContext(ThemeContext);
 
   return (
     <Box position="relative">
       <Flex
         onClick={() => setIsOpen(!isOpen)}
-        boxShadow="sm"
-        bg="white"
+        boxShadow={isDark ? '0 0 4px 2px hsl(207, 26%, 17%)' : 'sm'}
+        bg={isDark ? 'blue100' : 'white'}
         width="200px"
-        p="lg"
+        py="md"
+        px="lg"
         mt={['4xl', 0]}
         alignItems="center"
         justifyContent="space-between"
         style={{ cursor: 'pointer' }}
       >
-        <Text color="gray300">Filter by Region</Text>
+        <Text color={isDark ? 'gray100' : 'gray300'}>Filter by Region</Text>
         <Box mt="sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
             viewBox="0 0 512 512"
-            style={{ transform: isOpen ? 'rotate(180deg)' : null }}
+            style={{
+              transform: isOpen ? 'rotate(180deg)' : null,
+              transition: 'transform 100ms linear',
+            }}
           >
             <path
               style={{
-                fill: 'hsl(0, 0%, 52%)',
+                fill: isDark ? 'hsl(0, 0%, 98%)' : 'hsl(0, 0%, 52%)',
               }}
               d="M414,321.94,274.22,158.82a24,24,0,0,0-36.44,0L98,321.94c-13.34,15.57-2.28,39.62,18.22,39.62H395.82C416.32,361.56,427.38,337.51,414,321.94Z"
             />
@@ -58,22 +65,20 @@ function Select({ onChangeRegion, currentRegion }) {
           left="0"
           zIndex="2"
           width="100%"
-          bg="white"
           mt="md"
-          boxShadow="sm"
+          boxShadow={isDark ? '0 0 4px 2px hsl(207, 26%, 17%)' : 'sm'}
+          bg={isDark ? 'blue100' : 'white'}
+          style={{ transition: 'all 200ms linear' }}
         >
           {['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'].map(
             region => (
               <StyledList
+                isDark={isDark}
                 key={region}
                 as="li"
                 onClick={() => {
                   onChangeRegion(region);
                   setIsOpen(false);
-                }}
-                style={{
-                  backgroundColor:
-                    currentRegion === region ? 'hsl(0, 0%, 90%)' : null,
                 }}
               >
                 {region}
@@ -88,7 +93,6 @@ function Select({ onChangeRegion, currentRegion }) {
 
 Select.propType = {
   onChangeRegion: PropType.func.isReequired,
-  currentRegion: PropType.func,
 };
 
 export default Select;

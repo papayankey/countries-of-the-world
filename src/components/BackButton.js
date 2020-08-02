@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Flex, Box, Text } from '../shared';
+import { ThemeContext } from '../components';
 
 function BackButton() {
+  const isDark = useContext(ThemeContext);
+
   return (
     <Link to="/">
       <Flex
         justifyContent="center"
         alignItems="center"
         width={['120px', '100px']}
-        boxShadow="sm"
-        bg="white"
+        boxShadow={isDark ? '0 0 4px 2px hsl(207, 26%, 17%)' : 'sm'}
+        bg={isDark ? 'blue100' : 'white'}
         mt="4xl"
         px="lg"
-        py="sm"
         style={{ cursor: 'pointer' }}
       >
         <Box mr="sm" mt="sm">
@@ -28,10 +30,10 @@ function BackButton() {
               points="244 400 100 256 244 112"
               style={{
                 fill: 'none',
-                stroke: '#000',
+                stroke: isDark ? 'hsl(0, 0%, 98%)' : '#000',
                 strokeLineCape: 'round',
                 strokeLineJoin: 'round',
-                strokeWidth: '48px',
+                strokeWidth: '30px',
               }}
             />
             <line
@@ -41,15 +43,15 @@ function BackButton() {
               y2="256"
               style={{
                 fill: 'none',
-                stroke: '#000',
+                stroke: isDark ? 'hsl(0, 0%, 98%)' : '#000',
                 strokeLineCape: 'round',
                 strokeLineJoin: 'round',
-                strokeWidth: '48px',
+                strokeWidth: '30px',
               }}
             />
           </svg>
         </Box>
-        <Text>Back</Text>
+        <Text color={isDark ? 'hsl(0, 0%, 98%)' : null}>Back</Text>
       </Flex>
     </Link>
   );

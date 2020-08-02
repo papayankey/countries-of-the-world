@@ -1,31 +1,34 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
 import PropType from 'prop-types';
 
 import { Box, Flex } from '../shared';
+import { ThemeContext } from '../components';
 
-const Input = styled(Box)(
+const Input = styled(Box)(({ isDark }) =>
   css({
     fontSize: '3',
+    color: isDark ? 'gray100' : null,
     width: '100%',
-    boxShadow: 'sm',
+    boxShadow: isDark ? '0 0 4px 2px hsl(207, 26%, 17%)' : 'sm',
+    bg: isDark ? 'blue100' : 'white',
     border: 'none',
-    py: 'lg',
+    py: 'md',
     px: '4xl',
     '&:focus': {
       outline: 'none',
     },
     '::placeholder': {
       fontSize: '3',
-      color: 'gray300',
+      color: isDark ? 'gray100' : 'gray300',
     },
   })
 );
 
-function SearchIcon() {
+function SearchIcon({ isDark }) {
   return (
-    <Box position="absolute" pl="md">
+    <Box position="absolute" pl="md" top="12px">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -36,7 +39,7 @@ function SearchIcon() {
           d="M221.09,64A157.09,157.09,0,1,0,378.18,221.09,157.1,157.1,0,0,0,221.09,64Z"
           style={{
             fill: 'none',
-            stroke: 'hsl(0, 0%, 52%)',
+            stroke: isDark ? 'hsl(0, 0%, 98%)' : 'hsl(0, 0%, 52%)',
             strokeMiterlimit: 10,
             strokeWidth: '32px',
           }}
@@ -47,7 +50,7 @@ function SearchIcon() {
           x2="448"
           y2="448"
           style={{
-            stroke: 'hsl(0, 0%, 52%)',
+            stroke: isDark ? 'hsl(0, 0%, 98%)' : 'hsl(0, 0%, 52%)',
             strokeLinecap: 'round',
             strokeMiterlimit: 10,
             strokeWidth: '32px',
@@ -58,9 +61,15 @@ function SearchIcon() {
   );
 }
 
-function ClearTextIcon({ clearText }) {
+function ClearTextIcon({ clearText, isDark }) {
   return (
-    <Box position="absolute" right="0" pr="md" onClick={() => clearText()}>
+    <Box
+      position="absolute"
+      right="0"
+      top="12px"
+      pr="md"
+      onClick={() => clearText()}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -72,7 +81,7 @@ function ClearTextIcon({ clearText }) {
           d="M448,256c0-106-86-192-192-192S64,150,64,256s86,192,192,192S448,362,448,256Z"
           style={{
             fill: 'none',
-            stroke: 'hsl(0, 0%, 52%)',
+            stroke: isDark ? 'hsl(0, 0%, 98%)' : 'hsl(0, 0%, 52%)',
             strokeMiterlimit: 10,
             strokeWidth: '32px',
           }}
@@ -84,7 +93,7 @@ function ClearTextIcon({ clearText }) {
           y2="192"
           style={{
             fill: 'none',
-            stroke: 'hsl(0, 0%, 52%)',
+            stroke: isDark ? 'hsl(0, 0%, 98%)' : 'hsl(0, 0%, 52%)',
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
             strokeWidth: '32px',
@@ -97,7 +106,7 @@ function ClearTextIcon({ clearText }) {
           y2="192"
           style={{
             fill: 'none',
-            stroke: 'hsl(0, 0%, 52%)',
+            stroke: isDark ? 'hsl(0, 0%, 98%)' : 'hsl(0, 0%, 52%)',
             strokeLinecap: 'round',
             strokeLinejoin: 'round',
             strokeWidth: '32px',
@@ -113,6 +122,7 @@ ClearTextIcon.propType = {
 };
 
 function Search({ onSearch }) {
+  const isDark = useContext(ThemeContext);
   const [text, setText] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const inputRef = useRef();
@@ -142,9 +152,10 @@ function Search({ onSearch }) {
       alignItems="center"
       width={['100%', '250px', '400px']}
     >
-      <SearchIcon />
+      <SearchIcon isDark={isDark} />
       <form onSubmit={handleSubmit} style={{ width: '100%' }}>
         <Input
+          isDark={isDark}
           as="input"
           type="text"
           name="search"
@@ -157,7 +168,9 @@ function Search({ onSearch }) {
           ref={inputRef}
         />
       </form>
-      {(isFocus || text.length > 0) && <ClearTextIcon clearText={clearText} />}
+      {(isFocus || text.length > 0) && (
+        <ClearTextIcon clearText={clearText} isDark={isDark} />
+      )}
     </Flex>
   );
 }

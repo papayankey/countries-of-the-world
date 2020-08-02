@@ -1,13 +1,15 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
 import PropType from 'prop-types';
 
 import { useNumberFormat, useQueryBorderName } from '../hooks';
 import { Grid, Box, Text, Flex } from '../shared';
+import { ThemeContext } from '../components';
 
-const StyledText = styled(Text)(
+const StyledText = styled(Text)(({ isDark }) =>
   css({
+    color: isDark ? 'hsl(0, 0%, 98%)' : null,
     fontWeight: 'semiBold',
     '& + &': {
       marginTop: 'md',
@@ -17,8 +19,9 @@ const StyledText = styled(Text)(
 
 const Span = styled(Text).attrs(() => ({
   as: 'span',
-}))(
+}))(({ isDark }) =>
   css({
+    color: isDark ? 'white' : null,
     fontWeight: 'extraLight',
     '& + &': {
       marginLeft: 'md',
@@ -26,11 +29,11 @@ const Span = styled(Text).attrs(() => ({
   })
 );
 
-const StyledBox = styled(Box)(
+const StyledBox = styled(Box)(({ isDark }) =>
   css({
-    backgroundColor: 'white',
-    boxShadow: 'sm',
-    paddingX: 'lg',
+    boxShadow: isDark ? '0 0 4px 2px hsl(207, 26%, 17%)' : 'sm',
+    bg: isDark ? 'blue100' : 'white',
+    paddingX: 'md',
     paddingY: 'sm',
     marginBottom: 'md',
     marginRight: 'md',
@@ -51,6 +54,7 @@ function CardDetail({ country }) {
     languages,
     borders,
   } = country;
+  const isDark = useContext(ThemeContext);
 
   population = useNumberFormat(population);
   borders = useQueryBorderName(borders);
@@ -74,7 +78,13 @@ function CardDetail({ country }) {
       gridTemplateColumns={['1fr', null, '1fr 1fr']}
       gridColumnGap={[0, null, '60px']}
     >
-      <Box position="relative" p={['40%', '35%', '30%']} mt="5xl" bg="gray100">
+      <Box
+        position="relative"
+        p={['40%', '35%', '30%']}
+        mt="5xl"
+        bg={isDark ? 'blue300' : ' gray100'}
+        boxShadow={isDark ? '0 0 4px 4px hsl(207, 26%, 17%)' : 'md'}
+      >
         <Box
           as="img"
           src={flag}
@@ -94,24 +104,29 @@ function CardDetail({ country }) {
         >
           <Grid mt={[0, '4xl', 0]} gridTemplateColumns={['1fr', '1fr 1fr']}>
             <Box mt={['3xl', null, 0]} gridArea="1/1/2/2">
-              <Text as="h2" fontSize="5" fontWeight="extraBold">
+              <Text
+                as="h2"
+                fontSize="7"
+                fontWeight="extraBold"
+                color={isDark ? 'white' : null}
+              >
                 {name}
               </Text>
               <Box mt="2xl">
-                <StyledText>
-                  Native Name: <Span>{nativeName}</Span>
+                <StyledText isDark={isDark}>
+                  Native Name: <Span isDark={isDark}>{nativeName}</Span>
                 </StyledText>
-                <StyledText>
-                  Population: <Span>{population}</Span>
+                <StyledText isDark={isDark}>
+                  Population: <Span isDark={isDark}>{population}</Span>
                 </StyledText>
-                <StyledText>
-                  Region: <Span>{region}</Span>
+                <StyledText isDark={isDark}>
+                  Region: <Span isDark={isDark}>{region}</Span>
                 </StyledText>
-                <StyledText>
-                  Sub Region: <Span>{subregion}</Span>
+                <StyledText isDark={isDark}>
+                  Sub Region: <Span isDark={isDark}>{subregion}</Span>
                 </StyledText>
-                <StyledText>
-                  Capital: <Span>{capital}</Span>
+                <StyledText isDark={isDark}>
+                  Capital: <Span isDark={isDark}>{capital}</Span>
                 </StyledText>
               </Box>
             </Box>
@@ -121,22 +136,28 @@ function CardDetail({ country }) {
               pt={[0, '4xl']}
               gridArea={['2/1/3/2', '1/2/2/3']}
             >
-              <StyledText>
+              <StyledText isDark={isDark}>
                 Top Level Domain:{' '}
                 {topLevelDomain.map((domain, idx) => (
-                  <Span key={idx}>{domain}</Span>
+                  <Span key={idx} isDark={isDark}>
+                    {domain}
+                  </Span>
                 ))}
               </StyledText>
-              <StyledText>
+              <StyledText isDark={isDark}>
                 Currencies:{' '}
                 {currencies.map((currency, idx) => (
-                  <Span key={idx}>{currency}</Span>
+                  <Span key={idx} isDark={isDark}>
+                    {currency}
+                  </Span>
                 ))}
               </StyledText>
-              <StyledText>
+              <StyledText isDark={isDark}>
                 Languages:{' '}
                 {languages.map((language, idx) => (
-                  <Span key={idx}>{language}</Span>
+                  <Span key={idx} isDark={isDark}>
+                    {idx < languages.length - 1 ? `${language},` : language}
+                  </Span>
                 ))}
               </StyledText>
             </Box>
@@ -147,12 +168,28 @@ function CardDetail({ country }) {
               alignItems={[null, 'baseline']}
             >
               <Flex flex="auto 0 0">
-                <StyledText>Border Countries: </StyledText>
+                <StyledText isDark={isDark}>Border Countries: </StyledText>
               </Flex>
               <Flex mt={['lg', 0]} ml={[0, 'lg']} flexWrap="wrap">
-                {borders.map((border, idx) => (
-                  <StyledBox key={idx}>{border}</StyledBox>
-                ))}
+                {borders.length > 0 ? (
+                  borders.map((border, idx) => (
+                    <StyledBox key={idx} isDark={isDark}>
+                      <Text
+                        color={isDark ? 'hsl(0, 0%, 98%)' : null}
+                        fontWeight="extraLight"
+                      >
+                        {border}
+                      </Text>
+                    </StyledBox>
+                  ))
+                ) : (
+                  <Text
+                    color={isDark ? 'hsl(0, 0%, 98%)' : null}
+                    fontWeight="extraLight"
+                  >
+                    None
+                  </Text>
+                )}
               </Flex>
             </Flex>
           </Box>

@@ -30,7 +30,7 @@ function Select({ onChangeRegion }) {
         boxShadow={isDark ? '0 0 4px 2px hsl(207, 26%, 17%)' : 'sm'}
         bg={isDark ? 'blue100' : 'white'}
         width="200px"
-        py="md"
+        py="5px"
         px="lg"
         mt={['4xl', 0]}
         alignItems="center"

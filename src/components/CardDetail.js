@@ -196,7 +196,7 @@ function CardDetail({ country }) {
           </Box>
         </Flex>
       </Box>
-      <Box mt={['4xl', 0]}></Box>
+      <Box mt={['4xl', null, 0]}></Box>
     </Grid>
   );
 }

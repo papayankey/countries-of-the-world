@@ -21,14 +21,20 @@ const Input = styled(Box)(({ isDark }) =>
     },
     '::placeholder': {
       fontSize: '3',
-      color: isDark ? 'gray100' : 'gray300',
+      color: isDark ? 'gray200' : 'gray300',
     },
   })
 );
 
 function SearchIcon({ isDark }) {
   return (
-    <Box position="absolute" pl="md" top="12px">
+    <Box
+      position="absolute"
+      pl="md"
+      height="100%"
+      display="flex"
+      style={{ alignItems: 'center' }}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -66,8 +72,10 @@ function ClearTextIcon({ clearText, isDark }) {
     <Box
       position="absolute"
       right="0"
-      top="12px"
       pr="md"
+      height="100%"
+      display="flex"
+      style={{ alignItems: 'center' }}
       onClick={() => clearText()}
     >
       <svg
@@ -150,7 +158,7 @@ function Search({ onSearch }) {
     <Flex
       position="relative"
       alignItems="center"
-      width={['100%', '250px', '400px']}
+      width={['100%', '300px', '450px']}
     >
       <SearchIcon isDark={isDark} />
       <form onSubmit={handleSubmit} style={{ width: '100%' }}>
@@ -159,8 +167,8 @@ function Search({ onSearch }) {
           as="input"
           type="text"
           name="search"
-          title="Search Term: can be partial or full"
-          placeholder="Search by name, region, capital ..."
+          title="Search term: name, capital and region"
+          placeholder="Search for countries ..."
           value={text}
           onChange={e => setText(e.target.value.trim().toLowerCase())}
           onFocus={() => setIsFocus(true)}

@@ -2,10 +2,32 @@
 
 An application to get information about countries in the world
 
-## Demo
+Live Demo of the app is here: [Demo](https://countries-of-the-world.vercel.app)
 
-Application is in development
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine.
+
+## Prerequisite
+
+You only need to have below installed on your system - Node Js: [here](https://nodejs.org/en/download/)
+
+## Installing
+
+1. Clone the repo: [here](https://github.com/iambenbright/where-in-the-world.git)
+2. Install npm packages: `npm install`
+3. Run app: `npm run dev`
+
+## Built with
+
+- React
+- Styled Component
+- Styled System
 
 ## Author
 
 [Benneth Yankey](https://github.com/iambenbright)
+
+## Licence
+
+[MIT](https://opensource.org/licenses/MIT)

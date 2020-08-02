@@ -88,6 +88,7 @@ function CardDetail({ country }) {
         <Box
           as="img"
           src={flag}
+          alt={name + ' flag'}
           position="absolute"
           top="0"
           left="0"

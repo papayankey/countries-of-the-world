@@ -5,7 +5,7 @@ import { AppBar, CSSBaseline, ThemeContext } from './components';
 import { Countries, Country } from './pages';
 
 function App() {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   const toggleTheme = () => setIsDark(!isDark);
 

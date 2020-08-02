@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Search, Select, CardList, Pagination } from '../components';
-import { Flex, Container, Grid, Box } from '../shared';
+import React, { useState, useEffect, useContext } from 'react';
+
+import {
+  Search,
+  Select,
+  CardList,
+  Pagination,
+  ThemeContext,
+} from '../components';
+import { Flex, Container, Grid, Box, Text } from '../shared';
 
 // data cache
 const cache = {};
 
 function Countries() {
+  const isDark = useContext(ThemeContext);
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [Error, setError] = useState(null);
@@ -107,13 +115,15 @@ function Countries() {
         <Select onChangeRegion={changeRegion} />
       </Flex>
       {isLoading && (
-        <Box as="p" mt="4xl">
-          Loading...
+        <Box mt="4xl">
+          <Text color={isDark ? 'white' : null}>Loading...</Text>
         </Box>
       )}
       {isError && (
-        <Box as="p" mt="4xl">
-          Error occurred: {Error.message}
+        <Box mt="4xl">
+          <Text color={isDark ? 'white' : null}>
+            Error occurred: {Error.message}
+          </Text>
         </Box>
       )}
       {filteredData && (

@@ -8,7 +8,7 @@ import { ThemeContext } from '../components';
 
 const StyledList = styled(Text)(({ isDark }) =>
   css({
-    color: isDark ? 'gray100' : 'gray300',
+    color: isDark ? 'gray100' : null,
     listStyle: 'none',
     cursor: 'pointer',
     paddingY: 'md',
@@ -37,7 +37,7 @@ function Select({ onChangeRegion }) {
         justifyContent="space-between"
         style={{ cursor: 'pointer' }}
       >
-        <Text color={isDark ? 'gray100' : 'gray300'}>Filter by Region</Text>
+        <Text color={isDark ? 'gray100' : null}>Filter by Region</Text>
         <Box mt="sm">
           <svg
             xmlns="http://www.w3.org/2000/svg"

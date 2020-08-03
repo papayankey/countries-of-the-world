@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropType from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Card from './Card';
-import { Box } from '../shared';
+import ThemeContext from './ThemeContext';
+import { Text } from '../shared';
 
 function CardList({ countries, searchTerm }) {
+  const isDark = useContext(ThemeContext);
+
   if (searchTerm && countries.length <= 0) {
-    return <Box as="p">No match with search term: {searchTerm}</Box>;
+    return (
+      <Text color={isDark ? 'white' : null}>
+        No match with search term:{' '}
+        <Text as="span" fontStyle="italic" color="gray300">
+          {searchTerm}
+        </Text>
+      </Text>
+    );
   }
 
   return countries.map(country => {

@@ -44,8 +44,8 @@ function CardDetail({ country }) {
   let {
     flag,
     name,
-    population,
     nativeName,
+    population,
     region,
     subregion,
     capital,
@@ -54,24 +54,23 @@ function CardDetail({ country }) {
     languages,
     borders,
   } = country;
+
+  const valueStrings = [nativeName, population, region, subregion, capital];
+
   const isDark = useContext(ThemeContext);
 
   population = useNumberFormat(population);
   borders = useQueryBorderName(borders);
 
-  currencies = useMemo(() => {
-    return currencies.reduce(
+  function memoizeFn(value) {
+    return value.reduce(
       (accum, current) => (accum = [...accum, current.name]),
       []
     );
-  }, [currencies]);
+  }
 
-  languages = useMemo(() => {
-    return languages.reduce(
-      (accum, current) => (accum = [...accum, current.name]),
-      []
-    );
-  }, [languages]);
+  currencies = useMemo(() => memoizeFn(currencies), [currencies]);
+  languages = useMemo(() => memoizeFn(languages), [languages]);
 
   return (
     <Grid
@@ -114,21 +113,19 @@ function CardDetail({ country }) {
                 {name}
               </Text>
               <Box mt="2xl">
-                <StyledText isDark={isDark}>
-                  Native Name: <Span isDark={isDark}>{nativeName}</Span>
-                </StyledText>
-                <StyledText isDark={isDark}>
-                  Population: <Span isDark={isDark}>{population}</Span>
-                </StyledText>
-                <StyledText isDark={isDark}>
-                  Region: <Span isDark={isDark}>{region}</Span>
-                </StyledText>
-                <StyledText isDark={isDark}>
-                  Sub Region: <Span isDark={isDark}>{subregion}</Span>
-                </StyledText>
-                <StyledText isDark={isDark}>
-                  Capital: <Span isDark={isDark}>{capital}</Span>
-                </StyledText>
+                {[
+                  'Native Name',
+                  'Population',
+                  'Region',
+                  'Sub Region',
+                  'Capital',
+                ].map((item, idx) => {
+                  return (
+                    <StyledText isDark={isDark}>
+                      {item}: <Span isDark={isDark}>{valueStrings[idx]}</Span>
+                    </StyledText>
+                  );
+                })}
               </Box>
             </Box>
             <Box

@@ -1,4 +1,5 @@
 import React, { useMemo, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import css from '@styled-system/css';
 import PropType from 'prop-types';
@@ -37,6 +38,9 @@ const StyledBox = styled(Box)(({ isDark }) =>
     paddingY: 'sm',
     marginBottom: 'md',
     marginRight: 'md',
+    '&:hover': {
+      bg: isDark ? 'hsla(209, 23%, 22%, 0.5)' : 'gray200',
+    },
   })
 );
 
@@ -170,16 +174,21 @@ function CardDetail({ country }) {
               </Flex>
               <Flex mt={['lg', 0]} ml={[0, 'lg']} flexWrap="wrap">
                 {borders.length > 0 ? (
-                  borders.map((border, idx) => (
-                    <StyledBox key={idx} isDark={isDark}>
-                      <Text
-                        color={isDark ? 'hsl(0, 0%, 98%)' : null}
-                        fontWeight="extraLight"
-                      >
-                        {border}
-                      </Text>
-                    </StyledBox>
-                  ))
+                  borders.map(
+                    border =>
+                      border.length && (
+                        <Link key={border} to={`/countries/${border}`}>
+                          <StyledBox isDark={isDark}>
+                            <Text
+                              color={isDark ? 'hsl(0, 0%, 98%)' : null}
+                              fontWeight="extraLight"
+                            >
+                              {border}
+                            </Text>
+                          </StyledBox>
+                        </Link>
+                      )
+                  )
                 ) : (
                   <Text
                     color={isDark ? 'hsl(0, 0%, 98%)' : null}

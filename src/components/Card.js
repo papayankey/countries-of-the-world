@@ -1,9 +1,27 @@
 import React, { useContext } from 'react';
+import styled from 'styled-components';
+import css from '@styled-system/css';
 import PropType from 'prop-types';
 
 import { ThemeContext } from '../components';
 import { Box, Text } from '../shared';
 import { useNumberFormat } from '../hooks';
+
+const Base = styled(Box)(({ isDark }) =>
+  css({
+    position: 'relative',
+    bg: isDark ? 'blue100' : 'white',
+    boxShadow: isDark ? '0 0 4px 2px hsl(207, 26%, 17%)' : 'sm',
+    borderRadius: 'md',
+    overflow: 'hidden',
+    width: ['80%', 'auto'],
+    mx: ['auto', 0],
+    transition: 'transform 150ms linear',
+    ':hover': {
+      transform: 'scale(1.025)',
+    },
+  })
+);
 
 function Card({ country }) {
   const isDark = useContext(ThemeContext);
@@ -11,14 +29,7 @@ function Card({ country }) {
   population = useNumberFormat(population);
 
   return (
-    <Box
-      bg={isDark ? 'blue100' : 'white'}
-      boxShadow={isDark ? '0 0 4px 2px hsl(207, 26%, 17%)' : 'sm'}
-      borderRadius="md"
-      overflow="hidden"
-      width={['80%', 'auto']}
-      mx={['auto', 0]}
-    >
+    <Base isDark={isDark}>
       <Box position="relative" p="30%" bg="gray300" borderRadius="none">
         <Box
           as="img"
@@ -95,7 +106,7 @@ function Card({ country }) {
           </Box>
         </Box>
       </Box>
-    </Box>
+    </Base>
   );
 }
 

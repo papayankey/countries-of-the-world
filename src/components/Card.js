@@ -19,6 +19,7 @@ const Base = styled(Box)(({ isDark }) =>
     transition: 'transform 150ms linear',
     ':hover': {
       transform: 'scale(1.025)',
+      boxShadow: isDark ? '0 0 6px 4px hsl(207, 26%, 17%)' : 'md',
     },
   })
 );

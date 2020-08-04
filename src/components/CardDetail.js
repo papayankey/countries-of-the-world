@@ -59,7 +59,7 @@ function CardDetail({ country }) {
     borders,
   } = country;
 
-  const valueStrings = [nativeName, population, region, subregion, capital];
+  const valueStrings = [nativeName, null, region, subregion, capital];
 
   const isDark = useContext(ThemeContext);
 
@@ -110,11 +110,12 @@ function CardDetail({ country }) {
             <Box mt={['3xl', null, 0]} gridArea="1/1/2/2">
               <Text
                 as="h2"
+                title={name}
                 fontSize="7"
                 fontWeight="extraBold"
                 color={isDark ? 'white' : null}
               >
-                {name}
+                {name.length > 20 ? `${name.substr(0, 21)}...` : name}
               </Text>
               <Box mt="2xl">
                 {[
@@ -126,7 +127,12 @@ function CardDetail({ country }) {
                 ].map((item, idx) => {
                   return (
                     <StyledText isDark={isDark}>
-                      {item}: <Span isDark={isDark}>{valueStrings[idx]}</Span>
+                      {item}:{' '}
+                      <Span isDark={isDark}>
+                        {valueStrings[idx] === null
+                          ? population
+                          : valueStrings[idx]}
+                      </Span>
                     </StyledText>
                   );
                 })}
@@ -135,7 +141,7 @@ function CardDetail({ country }) {
             <Box
               mt={['3xl', null, 0]}
               ml={[0, 'xl', 'md']}
-              pt={[0, '4xl']}
+              pt={[0, '58px']}
               gridArea={['2/1/3/2', '1/2/2/3']}
             >
               <StyledText isDark={isDark}>
@@ -175,9 +181,10 @@ function CardDetail({ country }) {
               <Flex mt={['lg', 0]} ml={[0, 'lg']} flexWrap="wrap">
                 {borders.length > 0 ? (
                   borders.map(
-                    border =>
-                      border.length && (
-                        <Link key={border} to={`/countries/${border}`}>
+                    (border, idx) =>
+                      border &&
+                      border.length > 0 && (
+                        <Link key={idx} to={`/countries/${border}`}>
                           <StyledBox isDark={isDark}>
                             <Text
                               color={isDark ? 'hsl(0, 0%, 98%)' : null}

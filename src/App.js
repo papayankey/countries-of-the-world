@@ -5,7 +5,18 @@ import { AppBar, CSSBaseline, ThemeContext } from './components';
 import { Countries, Country } from './pages';
 
 function App() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => getCurrentTime());
+
+  function getCurrentTime() {
+    let todaysDate = new Date();
+    let hours = todaysDate.getHours();
+
+    if (hours > 6 || hours < 19) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   const toggleTheme = () => setIsDark(!isDark);
 

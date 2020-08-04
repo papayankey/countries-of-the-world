@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
 import PropType from 'prop-types';
@@ -134,6 +134,19 @@ function Search({ onSearch }) {
   const [text, setText] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const inputRef = useRef();
+
+  useEffect(() => {
+    function activateSearchInput() {
+      inputRef.current.focus();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+
+    window.addEventListener('keyup', activateSearchInput);
+    return () => window.removeEventListener('keyup', activateSearchInput);
+  }, []);
 
   function validateText(text) {
     const regexp = /^[a-zA-z]+$/gi;

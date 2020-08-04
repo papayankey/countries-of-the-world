@@ -11,8 +11,6 @@ function App() {
     let date = new Date();
     let hours = date.getHours();
 
-    console.log(hours);
-
     if (hours < 6 || hours > 19) {
       return true;
     } else {

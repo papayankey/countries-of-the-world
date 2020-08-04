@@ -8,13 +8,15 @@ function App() {
   const [isDark, setIsDark] = useState(() => getCurrentTime());
 
   function getCurrentTime() {
-    let todaysDate = new Date();
-    let hours = todaysDate.getHours();
+    let date = new Date();
+    let hours = date.getHours();
 
-    if (hours > 6 || hours < 19) {
-      return false;
-    } else {
+    console.log(hours);
+
+    if (hours < 6 || hours > 19) {
       return true;
+    } else {
+      return false;
     }
   }
 

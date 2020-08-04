@@ -6,6 +6,7 @@ import {
   CardList,
   Pagination,
   ThemeContext,
+  ActivityIndicator,
 } from '../components';
 import { Flex, Container, Grid, Box, Text } from '../shared';
 
@@ -116,7 +117,7 @@ function Countries() {
       </Flex>
       {isLoading && (
         <Box mt="4xl">
-          <Text color={isDark ? 'white' : null}>Loading...</Text>
+          <ActivityIndicator />
         </Box>
       )}
       {isError && (

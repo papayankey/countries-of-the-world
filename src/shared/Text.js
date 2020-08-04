@@ -5,7 +5,7 @@ import propTypes from '@styled-system/prop-types';
 
 import { textColor } from '../customFns';
 
-export const Text = styled('p')(
+const Text = styled('p')(
   css({
     fontWeight: 'semiBold',
     fontSize: 3,
@@ -17,3 +17,5 @@ export const Text = styled('p')(
 Text.propTypes = {
   ...propTypes.typography,
 };
+
+export default Text;

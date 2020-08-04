@@ -2,7 +2,7 @@ import React, { useMemo, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import css from '@styled-system/css';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { useNumberFormat, useQueryBorderName } from '../hooks';
 import { Grid, Box, Text, Flex } from '../shared';
@@ -214,8 +214,8 @@ function CardDetail({ country }) {
   );
 }
 
-CardDetail.propType = {
-  country: PropType.object.isRequired,
+CardDetail.propTypes = {
+  country: PropTypes.object.isRequired,
 };
 
 export default CardDetail;

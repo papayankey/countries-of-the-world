@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Box, Flex } from '../shared';
 import { ThemeContext } from '../components';
@@ -126,7 +126,7 @@ function ClearTextIcon({ clearText, isDark }) {
 }
 
 ClearTextIcon.propType = {
-  clearText: PropType.func,
+  clearText: PropTypes.func,
 };
 
 function Search({ onSearch }) {
@@ -196,8 +196,8 @@ function Search({ onSearch }) {
   );
 }
 
-Search.propType = {
-  onSearch: PropType.func,
+Search.propTypes = {
+  onSearch: PropTypes.func,
 };
 
 export default Search;

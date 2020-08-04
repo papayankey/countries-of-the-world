@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Box, Flex, Text } from '../shared';
 import { ThemeContext } from '../components';
@@ -71,11 +71,11 @@ function Pagination({ data, totalPages, currentPage, onChangePage }) {
   );
 }
 
-Pagination.propType = {
-  data: PropType.number.isRequired,
-  totalPages: PropType.number.isRequired,
-  currentPage: PropType.number.isRequired,
-  changePage: PropType.func.isRequired,
+Pagination.propTypes = {
+  data: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  changePage: PropTypes.func.isRequired,
 };
 
 export default Pagination;

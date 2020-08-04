@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { grid } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
-import { Box } from './Box';
+import Box from './Box';
 
 const StyledGrid = styled(Box)(
   {
@@ -12,10 +12,12 @@ const StyledGrid = styled(Box)(
   grid
 );
 
-export function Grid({ children, ...other }) {
+function Grid({ children, ...other }) {
   return <StyledGrid {...other}>{children}</StyledGrid>;
 }
 
 Grid.propTypes = {
   ...propTypes.grid,
 };
+
+export default Grid;

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Card from './Card';
@@ -29,9 +29,9 @@ function CardList({ countries, searchTerm }) {
   });
 }
 
-CardList.propType = {
-  countries: PropType.array.isRequired,
-  searchTerm: PropType.string,
+CardList.propTypes = {
+  countries: PropTypes.array.isRequired,
+  searchTerm: PropTypes.string,
 };
 
 export default CardList;

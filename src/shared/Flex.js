@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { flexbox } from 'styled-system';
 import propTypes from '@styled-system/prop-types';
 
-import { Box } from './Box';
+import Box from './Box';
 
-export const Flex = styled(Box)(
+const Flex = styled(Box)(
   {
     display: 'flex',
   },
@@ -14,3 +14,5 @@ export const Flex = styled(Box)(
 Flex.propTypes = {
   ...propTypes.flexbox,
 };
+
+export default Flex;

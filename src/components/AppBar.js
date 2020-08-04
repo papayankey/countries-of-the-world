@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Flex, Text, Container, Box } from '../shared';
 import { ThemeContext } from '../components';
@@ -59,8 +59,8 @@ function AppBar({ onThemeToggle }) {
   );
 }
 
-AppBar.propType = {
-  onThemeToggle: PropType.func,
+AppBar.propTypes = {
+  onThemeToggle: PropTypes.func,
 };
 
 export default AppBar;

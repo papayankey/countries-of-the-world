@@ -6,8 +6,9 @@ import propTypes, { propType } from '@styled-system/prop-types';
 import { backgroundColor, boxShadow } from '../customFns';
 
 // Box
-export const Box = styled('div')(
+const Box = styled('div')(
   css({
+    outline: 'none',
     margin: 0,
     minWidth: 0,
     borderRadius: 'sm',
@@ -22,3 +23,5 @@ Box.propTypes = {
   backgroundColor: propType,
   boxShadow: propType,
 };
+
+export default Box;

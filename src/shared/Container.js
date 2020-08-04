@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Box } from './Box';
+import Box from './Box';
 
-export function Container({ children, ...other }) {
+function Container({ children, ...other }) {
   return (
     <Box
       height="100%"
@@ -15,3 +16,9 @@ export function Container({ children, ...other }) {
     </Box>
   );
 }
+
+Container.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element),
+};
+
+export default Container;

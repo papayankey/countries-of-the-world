@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Box, Text, Flex } from '../shared';
 import { ThemeContext } from '../components';
@@ -92,8 +92,8 @@ function Select({ onChangeRegion }) {
   );
 }
 
-Select.propType = {
-  onChangeRegion: PropType.func.isReequired,
+Select.propTypes = {
+  onChangeRegion: PropTypes.func.isRequired,
 };
 
 export default Select;

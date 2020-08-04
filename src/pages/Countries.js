@@ -111,41 +111,43 @@ function Countries() {
 
   return (
     <Container>
-      <Flex mt="3xl" justifyContent="Space-between" flexWrap="wrap">
-        <Search onSearch={onSearch} />
-        <Select onChangeRegion={changeRegion} />
-      </Flex>
-      {isLoading && (
-        <Box mt="4xl">
-          <ActivityIndicator />
-        </Box>
-      )}
-      {isError && (
-        <Box mt="4xl">
-          <Text color={isDark ? 'white' : null}>
-            Error occurred: {Error.message}
-          </Text>
-        </Box>
-      )}
-      {filteredData && (
-        <Grid
-          mt="4xl"
-          gridTemplateColumns="repeat(auto-fill, minmax(250px, 1fr))"
-          gridGap="40px"
-        >
-          <CardList countries={filteredDataPerPage} searchTerm={searchTerm} />
-        </Grid>
-      )}
-      {filteredData && filteredData.length > totalPerPage ? (
-        <Pagination
-          data={filteredData.length}
-          totalPages={totalPerPage}
-          currentPage={page}
-          onChangePage={changePage}
-        />
-      ) : (
-        <Box my="3xl" height="100px" />
-      )}
+      <Box>
+        <Flex mt="3xl" justifyContent="Space-between" flexWrap="wrap">
+          <Search onSearch={onSearch} />
+          <Select onChangeRegion={changeRegion} />
+        </Flex>
+        {isLoading && (
+          <Box mt="4xl">
+            <ActivityIndicator />
+          </Box>
+        )}
+        {isError && (
+          <Box mt="4xl">
+            <Text color={isDark ? 'white' : null}>
+              Error occurred: {Error.message}
+            </Text>
+          </Box>
+        )}
+        {filteredData && (
+          <Grid
+            mt="4xl"
+            gridTemplateColumns="repeat(auto-fill, minmax(250px, 1fr))"
+            gridGap="40px"
+          >
+            <CardList countries={filteredDataPerPage} searchTerm={searchTerm} />
+          </Grid>
+        )}
+        {filteredData && filteredData.length > totalPerPage ? (
+          <Pagination
+            data={filteredData.length}
+            totalPages={totalPerPage}
+            currentPage={page}
+            onChangePage={changePage}
+          />
+        ) : (
+          <Box my="3xl" height="100px" />
+        )}
+      </Box>
     </Container>
   );
 }

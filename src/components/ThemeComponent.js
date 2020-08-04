@@ -9,7 +9,7 @@ function ThemeComponent({ children }) {
 }
 
 ThemeComponent.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.element,
 };
 
 export default ThemeComponent;

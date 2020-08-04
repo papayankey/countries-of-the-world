@@ -18,7 +18,8 @@ function Container({ children, ...other }) {
 }
 
 Container.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.element,
+  other: PropTypes.array,
 };
 
 export default Container;

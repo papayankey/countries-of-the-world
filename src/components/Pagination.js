@@ -72,10 +72,10 @@ function Pagination({ data, totalPages, currentPage, onChangePage }) {
 }
 
 Pagination.propTypes = {
-  data: PropTypes.number.isRequired,
-  totalPages: PropTypes.number.isRequired,
-  currentPage: PropTypes.number.isRequired,
-  changePage: PropTypes.func.isRequired,
+  data: PropTypes.number,
+  totalPages: PropTypes.number,
+  currentPage: PropTypes.number,
+  changePage: PropTypes.func,
 };
 
 export default Pagination;

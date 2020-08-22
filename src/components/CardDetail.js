@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import css from '@styled-system/css';
@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { useNumberFormat, useQueryBorderName } from '../hooks';
 import { Grid, Box, Text, Flex } from '../shared';
 import { ThemeContext } from '../components';
+import ActivityIndicator from './ActivityIndicator';
 
 const StyledText = styled(Text)(({ isDark }) =>
   css({
@@ -45,6 +46,7 @@ const StyledBox = styled(Box)(({ isDark }) =>
 );
 
 function CardDetail({ country }) {
+  const [imageIsLoading, setImageIsLoading] = useState(true);
   let {
     flag,
     name,
@@ -58,6 +60,7 @@ function CardDetail({ country }) {
     languages,
     borders,
   } = country;
+  const imageRef = useRef();
 
   const valueStrings = [nativeName, null, region, subregion, capital];
 
@@ -76,6 +79,13 @@ function CardDetail({ country }) {
   currencies = useMemo(() => memoizeFn(currencies), [currencies]);
   languages = useMemo(() => memoizeFn(languages), [languages]);
 
+  useEffect(() => {
+    const isLoaded = imageRef.current.complete;
+    if (isLoaded) {
+      setImageIsLoading(false);
+    }
+  }, [setImageIsLoading]);
+
   return (
     <Grid
       gridTemplateColumns={['1fr', null, '1fr 1fr']}
@@ -88,10 +98,16 @@ function CardDetail({ country }) {
         bg={isDark ? 'blue300' : ' gray100'}
         boxShadow={isDark ? '0 0 4px 4px hsl(207, 26%, 17%)' : 'md'}
       >
+        {imageIsLoading && (
+          <Flex w="100%" h="100%" justifyContent="center" alignItems="center">
+            <ActivityIndicator />
+          </Flex>
+        )}
         <Box
           as="img"
           src={flag}
           alt={name + ' flag'}
+          ref={imageRef}
           position="absolute"
           top="0"
           left="0"

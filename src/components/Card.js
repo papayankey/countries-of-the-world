@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import css from '@styled-system/css';
 import PropTypes from 'prop-types';
 
 import { ThemeContext } from '../components';
-import { Box, Text } from '../shared';
+import { Box, Text, Flex } from '../shared';
 import { useNumberFormat } from '../hooks';
+import ActivityIndicator from './ActivityIndicator';
 
 const Base = styled(Box)(({ isDark }) =>
   css({
@@ -25,24 +26,47 @@ const Base = styled(Box)(({ isDark }) =>
 );
 
 function Card({ country }) {
-  const isDark = useContext(ThemeContext);
   let { flag, name, population, region, capital } = country;
+  const [imageIsLoading, setImageIsLoading] = useState(true);
+  const isDark = useContext(ThemeContext);
   population = useNumberFormat(population);
+  const imageRef = useRef();
+
+  useEffect(() => {
+    const isLoaded = imageRef.current.complete;
+    if (isLoaded) {
+      setImageIsLoading(false);
+    }
+  }, [setImageIsLoading, name]);
 
   return (
     <Base isDark={isDark}>
-      <Box position="relative" p="30%" bg="gray300" borderRadius="none">
+      <Box
+        position="relative"
+        p="30%"
+        bg={isDark ? '' : 'hsl(0, 0%, 98%)'}
+        borderRadius="none"
+      >
+        {imageIsLoading && (
+          <Flex w="100%" h="100%" justifyContent="center" alignItems="center">
+            <ActivityIndicator />
+          </Flex>
+        )}
         <Box
           as="img"
           src={flag}
           alt={name + ' flag'}
+          ref={imageRef}
           position="absolute"
           top="0"
           left="0"
           width="100%"
           height="100%"
           borderRadius="none"
-          style={{ objectFit: 'cover' }}
+          style={{
+            objectFit: 'cover',
+            textIndent: '-9999px',
+          }}
         />
       </Box>
       <Box px="xl" py="4xl">

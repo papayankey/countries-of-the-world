@@ -45,6 +45,13 @@ const CSSBaseline = createGlobalStyle`
         return isDark ? 'hsl(207, 26%, 17%)' : 'hsl(0, 0%, 98%)';
       }}
     }
+
+    .go-back:hover {
+        box-shadow: ${({ isDark }) =>
+          isDark ? 'none' : '0 0 6px 4px hsl(0, 0%, 95%)'};
+        background-color: ${({ isDark }) =>
+          isDark ? 'hsl(209, 23%, 28%)' : 'none'};
+    }
 `;
 
 export default CSSBaseline;

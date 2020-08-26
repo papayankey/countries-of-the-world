@@ -18,7 +18,7 @@ function Container({ children, ...other }) {
 }
 
 Container.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   other: PropTypes.array,
 };
 

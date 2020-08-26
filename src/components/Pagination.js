@@ -19,7 +19,7 @@ const StyledButton = styled(Box)(({ isDark }) =>
     borderRadius: 'none',
     cursor: 'pointer',
     '&:hover': {
-      backgroundColor: isDark ? 'hsla(209, 23%, 22%, 0.5)' : 'gray200',
+      backgroundColor: isDark ? 'hsl(209, 23%, 28%)' : 'gray200',
     },
     '&:not(:last-of-type)': {
       borderRight: 'none',
@@ -47,13 +47,13 @@ function Pagination({ data, totalPages, currentPage, onChangePage }) {
             backgroundColor:
               currentPage === number
                 ? isDark
-                  ? 'hsla(209, 23%, 22%, 0.5)'
+                  ? 'hsl(209, 23%, 28%)'
                   : 'hsl(0, 0%, 90%)'
                 : null,
             borderColor:
               currentPage === number
                 ? isDark
-                  ? 'hsla(209, 23%, 22%, 0.5)'
+                  ? 'hsl(209, 23%, 28%)'
                   : null
                 : null,
           }}

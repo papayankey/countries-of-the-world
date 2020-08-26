@@ -40,7 +40,7 @@ const StyledBox = styled(Box)(({ isDark }) =>
     marginBottom: 'md',
     marginRight: 'md',
     '&:hover': {
-      bg: isDark ? 'hsla(209, 23%, 22%, 0.5)' : 'gray200',
+      bg: isDark ? 'hsl(209, 23%, 28%)' : 'gray200',
     },
   })
 );
@@ -142,7 +142,7 @@ function CardDetail({ country }) {
                   'Capital',
                 ].map((item, idx) => {
                   return (
-                    <StyledText isDark={isDark}>
+                    <StyledText key={idx} isDark={isDark}>
                       {item}:{' '}
                       <Span isDark={isDark}>
                         {valueStrings[idx] === null

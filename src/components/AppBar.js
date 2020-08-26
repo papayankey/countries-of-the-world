@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { Flex, Text, Container, Box } from '../shared';
@@ -17,15 +16,13 @@ function AppBar({ onThemeToggle }) {
     >
       <Container>
         <Flex height="100%" alignItems="center" justifyContent="space-between">
-          <Link to="/">
-            <Text
-              fontWeight="extraBold"
-              fontSize={[3, 4, 5]}
-              color={isDark ? 'white' : null}
-            >
-              Where in the world?
-            </Text>
-          </Link>
+          <Text
+            fontWeight="extraBold"
+            fontSize={[3, 4, 5]}
+            color={isDark ? 'white' : null}
+          >
+            Where in the world?
+          </Text>
           <Flex alignItems="center">
             <Box
               mr="md"

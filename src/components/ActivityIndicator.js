@@ -20,13 +20,12 @@ const Indicator = styled(Box)`
   border-style: solid;
   border-radius: 50%;
 
-  ${({ isDark }) =>
-    css({
-      width: '2xl',
-      height: '2xl',
-      borderColor: isDark ? 'white' : 'gray300',
-      borderTopColor: isDark ? 'blue200' : 'gray100',
-    })}
+  ${css(({ isDark }) => ({
+    width: '2xl',
+    height: '2xl',
+    borderColor: isDark ? 'white' : 'gray300',
+    borderTopColor: isDark ? 'blue200' : 'gray100',
+  }))}
 
   ${rotateAnimation};
 `;

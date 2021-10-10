@@ -32,7 +32,7 @@ function Countries() {
   useEffect(() => {
     async function fetchCountries() {
       try {
-        const response = await fetch('https://restcountries.eu/rest/v2/all');
+        const response = await fetch('https://restcountries.com/v3.1/all');
         const result = await response.json();
         setData(result);
         setIsLoading(false);

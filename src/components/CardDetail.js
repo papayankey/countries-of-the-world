@@ -46,38 +46,33 @@ const StyledBox = styled(Box)(({ isDark }) =>
 );
 
 function CardDetail({ country }) {
+  console.log(country);
+
   const [imageIsLoading, setImageIsLoading] = useState(true);
   let {
-    flag,
+    flags,
     name,
     nativeName,
     population,
     region,
     subregion,
     capital,
-    topLevelDomain,
+    tld,
     currencies,
     languages,
     borders,
   } = country;
   const imageRef = useRef();
 
-  const valueStrings = [nativeName, null, region, subregion, capital];
+  const valueStrings = [nativeName, null, region, subregion, capital[0]];
 
   const isDark = useContext(ThemeContext);
 
   population = useNumberFormat(population);
   borders = useQueryBorderName(borders);
 
-  function memoizeFn(value) {
-    return value.reduce(
-      (accum, current) => (accum = [...accum, current.name]),
-      []
-    );
-  }
-
-  currencies = useMemo(() => memoizeFn(currencies), [currencies]);
-  languages = useMemo(() => memoizeFn(languages), [languages]);
+  currencies = Object.entries(currencies);
+  languages = Object.entries(languages);
 
   useEffect(() => {
     const isLoaded = imageRef.current.complete;
@@ -105,8 +100,8 @@ function CardDetail({ country }) {
         )}
         <Box
           as="img"
-          src={flag}
-          alt={name + ' flag'}
+          src={flags.svg}
+          alt={name.common + ' flag'}
           ref={imageRef}
           position="absolute"
           top="0"
@@ -131,7 +126,7 @@ function CardDetail({ country }) {
                 fontWeight="extraBold"
                 color={isDark ? 'white' : null}
               >
-                {name.length > 20 ? `${name.substr(0, 21)}...` : name}
+                {name.common.length > 20 ? `${name.commmon.substr(0, 21)}...` : name.common}
               </Text>
               <Box mt="2xl">
                 {[
@@ -162,17 +157,17 @@ function CardDetail({ country }) {
             >
               <StyledText isDark={isDark}>
                 Top Level Domain:{' '}
-                {topLevelDomain.map((domain, idx) => (
-                  <Span key={idx} isDark={isDark}>
+                {tld.map(domain => (
+                  <Span key={domain} isDark={isDark}>
                     {domain}
                   </Span>
                 ))}
               </StyledText>
               <StyledText isDark={isDark}>
                 Currencies:{' '}
-                {currencies.map((currency, idx) => (
-                  <Span key={idx} isDark={isDark}>
-                    {currency}
+                {currencies.map(currency => (
+                  <Span key={currency[0]} isDark={isDark}>
+                    {currency[1].name}
                   </Span>
                 ))}
               </StyledText>
@@ -180,7 +175,8 @@ function CardDetail({ country }) {
                 Languages:{' '}
                 {languages.map((language, idx) => (
                   <Span key={idx} isDark={isDark}>
-                    {idx < languages.length - 1 ? `${language},` : language}
+                    {language.name}
+                    // {idx < languages.length - 1 ? `${language},` : language}
                   </Span>
                 ))}
               </StyledText>

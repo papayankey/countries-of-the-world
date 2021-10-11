@@ -13,9 +13,8 @@ function App() {
 
     if (hours < 6 || hours > 19) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   const toggleTheme = () => setIsDark(!isDark);
@@ -27,8 +26,8 @@ function App() {
         <AppBar onThemeToggle={toggleTheme} />
         <Switch>
           <Route path="/countries/:name" component={Country} />
-          <Route path="/countries" component={Countries} />
           <Route path="/" component={Countries} />
+          <Route path="/countries" component={Countries} />
         </Switch>
       </ThemeContext.Provider>
     </Router>

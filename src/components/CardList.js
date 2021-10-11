@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-import Card from './Card';
-import ThemeContext from './ThemeContext';
-import { Text } from '../shared';
+import Card from "./Card";
+import ThemeContext from "./ThemeContext";
+import { Text } from "../shared";
 
 function CardList({ countries, searchTerm }) {
   const isDark = useContext(ThemeContext);
 
   if (searchTerm && countries.length <= 0) {
     return (
-      <Text color={isDark ? 'white' : null}>
-        No match with search term:{' '}
+      <Text color={isDark ? "white" : null}>
+        No match with search term:{" "}
         <Text as="span" fontStyle="italic" color="gray300">
           {searchTerm}
         </Text>
@@ -20,9 +20,11 @@ function CardList({ countries, searchTerm }) {
     );
   }
 
-  return countries.map(country => {
+  return countries.map((country) => {
     return (
-      <Link key={country.name} to={`/countries/${country.name}`}>
+      <Link
+        key={country.name.common}
+        to={ `/countries/${country.name.common}`}>
         <Card country={country} />
       </Link>
     );

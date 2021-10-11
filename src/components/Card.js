@@ -26,7 +26,7 @@ const Base = styled(Box)(({ isDark }) =>
 );
 
 function Card({ country }) {
-  let { flag, name, population, region, capital } = country;
+  let { flags, name, population, region, capital } = country;
   const [imageIsLoading, setImageIsLoading] = useState(true);
   const isDark = useContext(ThemeContext);
   population = useNumberFormat(population);
@@ -37,7 +37,7 @@ function Card({ country }) {
     if (isLoaded) {
       setImageIsLoading(false);
     }
-  }, [setImageIsLoading, name]);
+  }, [setImageIsLoading, name.common]);
 
   return (
     <Base isDark={isDark}>
@@ -54,8 +54,8 @@ function Card({ country }) {
         )}
         <Box
           as="img"
-          src={flag}
-          alt={name + ' flag'}
+          src={flags.svg}
+          alt={name.common + ' flag'}
           ref={imageRef}
           position="absolute"
           top="0"
@@ -76,7 +76,7 @@ function Card({ country }) {
           fontSize="6"
           color={isDark ? 'white' : null}
         >
-          {name}
+          {name.common}
         </Text>
         <Box mt="2xl">
           <Box>

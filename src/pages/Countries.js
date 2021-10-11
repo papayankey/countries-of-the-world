@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 
 import {
   Search,
@@ -7,8 +7,8 @@ import {
   Pagination,
   ThemeContext,
   ActivityIndicator,
-} from '../components';
-import { Flex, Container, Grid, Box, Text } from '../shared';
+} from "../components";
+import { Flex, Container, Grid, Box, Text } from "../shared";
 
 // data cache
 const cache = {};
@@ -19,33 +19,33 @@ function Countries() {
   const [isLoading, setIsLoading] = useState(true);
   const [Error, setError] = useState(null);
   const [currentRegion, setCurrentRegion] = useState(
-    () => cache['region'] || 'All'
+    () => cache["region"] || "All"
   );
   const [page, setPage] = useState(
-    () => (cache['page'] > 5 ? 1 : cache['page']) || 1
+    () => (cache["page"] > 5 ? 1 : cache["page"]) || 1
   );
   const totalPerPage = 12;
   const [searchTerm, setSearchTerm] = useState(null);
 
-  const isError = Error !== null && typeof Error === 'object';
+  const isError = Error !== null && typeof Error === "object";
 
   useEffect(() => {
     async function fetchCountries() {
       try {
-        const response = await fetch('https://restcountries.com/v3.1/all');
+        const response = await fetch("https://restcountries.com/v3.1/all");
         const result = await response.json();
         setData(result);
         setIsLoading(false);
         // cache data
-        cache['All'] = result;
+        cache["All"] = result;
       } catch (e) {
         setIsLoading(false);
         setError(e);
       }
     }
 
-    if (cache['All']) {
-      setData(cache['All']);
+    if (cache["All"]) {
+      setData(cache["All"]);
       setIsLoading(false);
     } else {
       fetchCountries();
@@ -54,34 +54,31 @@ function Countries() {
 
   let filteredData = null;
   let filteredDataPerPage = null;
-  if (data) {
+  if (data !== null) {
     const indexOfLast = page * totalPerPage;
     const indexOfFirst = indexOfLast - totalPerPage;
 
     if (searchTerm) {
       filteredData = filterBySearchTerm();
-    } else if (currentRegion === 'All') {
+    } else if (currentRegion === "All") {
       filteredData = data;
     } else {
-      filteredData = data.filter(item => item.region === currentRegion);
+      filteredData = data.filter((item) => item.region === currentRegion);
     }
     filteredDataPerPage = filteredData.slice(indexOfFirst, indexOfLast);
   }
 
   function filterBySearchTerm() {
-    function convertToLowerCase({ region, name, capital }) {
-      return [region, name, capital].map(item => item.toLowerCase());
-    }
-
     return data.filter(item => {
-      const [region, name, capital] = convertToLowerCase(item);
+      const {region, name, capital} = item;
+
       return (
         region === searchTerm ||
         region.includes(searchTerm) ||
-        name === searchTerm ||
-        name.includes(searchTerm) ||
-        capital === searchTerm ||
-        capital.includes(searchTerm)
+        name.common === searchTerm ||
+        name.common.includes(searchTerm) ||
+        capital[0] === searchTerm ||
+        capital[0].includes(searchTerm)
       );
     });
   }
@@ -94,14 +91,14 @@ function Countries() {
 
     if (currentRegion !== region) {
       setCurrentRegion(region);
-      cache['region'] = region;
+      cache["region"] = region;
     }
     setPage(1);
   }
 
   function changePage(pageNumber) {
     setPage(pageNumber);
-    cache['page'] = pageNumber;
+    cache["page"] = pageNumber;
   }
 
   function onSearch(text) {
@@ -123,7 +120,7 @@ function Countries() {
         )}
         {isError && (
           <Box mt="4xl">
-            <Text color={isDark ? 'white' : null}>
+            <Text color={isDark ? "white" : null}>
               Error occurred: {Error.message}
             </Text>
           </Box>

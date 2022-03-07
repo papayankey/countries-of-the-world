@@ -42,9 +42,7 @@ const Pagination: React.FC<PaginationProps> = ({
           </Flex>
         </Button>
         <Button
-          css={{
-            bgcolor: page === totalPages && "initial",
-          }}
+          css={{ bgcolor: page === totalPages && "initial" }}
           disabled={page === totalPages}
           onClick={() => handleNextPage()}
         >

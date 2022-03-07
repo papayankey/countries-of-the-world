@@ -10,12 +10,26 @@ const Button = styled("button", {
   paddingTop: "$1",
   paddingBottom: "$1",
   letterSpacing: "1px",
-  boxShadow: "$2",
-  "&:hover": {
-    boxShadow: "$1",
-  },
   bgcolor: "$white",
   cursor: "pointer",
+
+  variants: {
+    variant: {
+      primary: {
+        boxShadow: "$2",
+        "&:hover": {
+          boxShadow: "$1",
+        },
+      },
+      secondary: {
+        boxShadow: "$1",
+      },
+    },
+  },
+
+  defaultVariants: {
+    variant: "primary",
+  },
 });
 
 export default Button;

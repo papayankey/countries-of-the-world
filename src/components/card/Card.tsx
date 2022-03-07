@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({ country }) => {
         },
       }}
     >
-      <CardImage svg={country.flags.svg} common={country.name.official} />
+      <CardImage svg={country.flags.svg} common={country.name.common} />
       <CardBody country={country} />
     </Box>
   );

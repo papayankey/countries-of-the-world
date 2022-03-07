@@ -7,7 +7,7 @@ import HandLense from "../icons/HandLense";
 import Input from "./Input";
 
 interface SearchProps {
-  onSearch: (text: string) => void
+  onSearch: (text: string) => void;
 }
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
@@ -63,9 +63,9 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         <Input
           type="text"
           name="search"
-          placeholder="Search for countries e.g name, capital or region"
+          placeholder="Search for countries e.g name, region, capital or currency"
           value={text}
-          onChange={(e) => setText(e.target.value.trim().toLowerCase())}
+          onChange={(e) => setText(e.target.value.trim())}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           ref={inputRef}

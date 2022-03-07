@@ -22,7 +22,7 @@ const CardBody: React.FC<CardBodyProps> = ({ country }) => {
           textOverflow: "ellipsis",
         }}
       >
-        {name.official}
+        {name.common}
       </Typography>
       <Box css={{ mt: "$3" }}>
         <Typography as="span" css={{ fontWeight: "$semiBold" }}>

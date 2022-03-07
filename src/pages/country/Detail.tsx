@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import CardImage from "../../components/card/CardImage";
 import { ICountry } from "../../data/types";
 import { Box, Button, Flex, Grid, Typography } from "../../shared";
@@ -15,7 +14,6 @@ interface DetailProps {
 }
 
 const Detail: React.FC<DetailProps> = ({ country }) => {
-  console.log(country);
   return (
     <Grid
       css={{
@@ -63,30 +61,42 @@ const Detail: React.FC<DetailProps> = ({ country }) => {
             </Typography>
             <Typography>
               <span className={KeyStyles()}>Currencies:</span>{" "}
-              {Object.values(country.currencies)
-                .map((v) => v.name)
-                .map((currency, index) => (
-                  <span key={index}>{currency}, </span>
-                ))}
+              {country.currencies &&
+                Object.values(country.currencies)
+                  .map((v) => v.name)
+                  .map((currency, index) => (
+                    <span key={index}>{currency}, </span>
+                  ))}
             </Typography>
             <Typography>
               <span className={KeyStyles()}>Languages: </span>
-              {Object.values(country.languages).map((language, index) => (
-                <span key={index}>{language}, </span>
-              ))}
+              {country.languages &&
+                Object.values(country.languages).map((language, index) => (
+                  <span key={index}>{language}, </span>
+                ))}
             </Typography>
           </Box>
         </Grid>
         <Flex css={{ mt: "$7", flexDirection: "column" }}>
-          <Typography as="h4">Border Countries: </Typography>
+          {country.borders && (
+            <Typography as="h4">Border Countries: </Typography>
+          )}
           <Flex css={{ mt: "$4", flexWrap: "wrap" }}>
-            {getBorderNames(country).map((item, index) => {
-              return (
-                <Link key={index} to={`/countries/name/${item}`}>
-                  <Button css={{ mr: "$2", mb: "$2" }}>{item}</Button>
-                </Link>
-              );
-            })}
+            {country.borders &&
+              getBorderNames(country).map((item, index) => {
+                return (
+                  <Button
+                    key={index}
+                    variant="secondary"
+                    css={{
+                      mr: "$2",
+                      mb: "$2",
+                    }}
+                  >
+                    {item}
+                  </Button>
+                );
+              })}
           </Flex>
         </Flex>
       </Box>

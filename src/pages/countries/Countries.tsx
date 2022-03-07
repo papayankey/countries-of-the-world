@@ -1,6 +1,13 @@
+import Fuse from "fuse.js";
 import * as React from "react";
 import { ActivityIndicator } from "../../components";
-import { API_ALL_COUNTRIES, JSON_KEY } from "../../data/constants";
+import {
+  API_ALL_COUNTRIES,
+  APPDATA_KEY,
+  CURRENT_PAGE_KEY,
+  CURRENT_REGION_KEY,
+  SEARCH_TERM_KEY,
+} from "../../data/constants";
 import { ICountry, Region } from "../../data/types";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Box, Container, Typography } from "../../shared";
@@ -9,11 +16,17 @@ import List from "./List";
 import Pagination from "./Pagination";
 
 const Countries: React.FC = () => {
-  const [data, setData] = useLocalStorage<ICountry[]>(JSON_KEY, []);
+  const [data, setData] = useLocalStorage<ICountry[]>(APPDATA_KEY, []);
+  const [searchTerm, setSearchTerm] = useLocalStorage<string>(
+    SEARCH_TERM_KEY,
+    ""
+  );
+  const [currentRegion, setCurrentRegion] = useLocalStorage<Region>(
+    CURRENT_REGION_KEY,
+    Region.ALL
+  );
+  const [page, setPage] = useLocalStorage<number>(CURRENT_PAGE_KEY, 1);
   const [hasError, setHasError] = React.useState(false);
-  const [searchTerm, setSearchTerm] = React.useState<string>("");
-  const [currentRegion, setCurrentRegion] = React.useState(() => Region.ALL);
-  const [page, setPage] = React.useState(1);
 
   React.useEffect(() => {
     const fetchCountries = async () => {
@@ -25,9 +38,7 @@ const Countries: React.FC = () => {
       }
     };
 
-    if (!data.length) {
-      fetchCountries();
-    }
+    if (!data.length) fetchCountries();
   }, [data, setData]);
 
   // filter by region
@@ -44,22 +55,15 @@ const Countries: React.FC = () => {
   };
 
   // filter by search term
-  const filterBySearchTerm = (word: string): ICountry[] => {
-    let augmentedData: ICountry[] = [];
-    if (word.length) {
-      word = word.toLowerCase();
-      augmentedData = data.filter((country) => {
-        const { region, name } = country;
+  const filterBySearchTerm = (searchInput: string): ICountry[] => {
+    const augmentedData: ICountry[] = [];
+    let options: Fuse.IFuseOptions<ICountry> = {
+      keys: ["name.common", "name.offical", "region", "subregion", "capital"],
+    };
 
-        if (
-          name.official.toLowerCase().includes(word) ||
-          region.toLowerCase().includes(word)
-        ) {
-          return true;
-        }
-        return false;
-      });
-    }
+    let fuse = new Fuse<ICountry>(data, options);
+    const result = fuse.search(searchInput);
+    result.forEach((v) => augmentedData.push(v.item));
     return augmentedData;
   };
 
@@ -123,6 +127,17 @@ const Countries: React.FC = () => {
     );
   }
 
+  const getAppState = () => {
+    return {
+      currentPage: page,
+      currentRegion,
+      searchTerm,
+      setPage,
+      setCurrentRegion,
+      setSearchTerm,
+    };
+  };
+
   return (
     <Container>
       <Filter
@@ -130,6 +145,7 @@ const Countries: React.FC = () => {
         handleChangeRegion={handleChangeRegion}
       />
       <List
+        {...getAppState()}
         countries={paginate(
           searchTerm.length
             ? filterBySearchTerm(searchTerm)
@@ -139,7 +155,7 @@ const Countries: React.FC = () => {
       <Pagination
         handlePreviousPage={handlePrevious}
         handleNextPage={handleNext}
-        page={page}
+        page={page ?? 1}
         totalPages={totalPages}
       />
     </Container>

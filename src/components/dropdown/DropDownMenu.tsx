@@ -23,9 +23,8 @@ const DropDownMenu: React.FC<React.PropsWithChildren<MenuProps>> = ({
         width: "100%",
         mt: "$3",
         boxShadow: "$1",
-        transition: "all 200ms linear",
-        backgroundColor: "$white",
-        // boxShadow={isDark ? "0 0 4px 2px hsl(207, 26%, 17%)" : "sm"}
+        transition: "all 150ms linear",
+        backgroundColor: "$primary",
       }}
     >
       {children}

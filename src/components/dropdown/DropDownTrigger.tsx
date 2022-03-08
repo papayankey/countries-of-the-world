@@ -1,5 +1,6 @@
 import { Flex } from "../../shared";
 import Typography from "../../shared/Typography";
+import { darkTheme } from "../../stitches/darkTheme";
 import Caret from "../icons/Caret";
 
 interface DropDownButtonProps {
@@ -14,8 +15,11 @@ const DropDownTrigger: React.FC<DropDownButtonProps> = ({
   return (
     <Flex
       css={{
-        backgroundColor: "$white",
+        backgroundColor: "$primary",
         boxShadow: "$1",
+        [`.${darkTheme} &`]: {
+          boxShadow: "$0",
+        },
         width: "200px",
         py: "$1",
         px: "$3",

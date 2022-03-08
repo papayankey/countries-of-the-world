@@ -36,7 +36,8 @@ const globalStyles = globalCss({
   },
   body: {
     lineHeight: "normal",
-    backgroundColor: "$gray100",
+    color: "$secondary",
+    backgroundColor: "$accent200"
   },
 });
 

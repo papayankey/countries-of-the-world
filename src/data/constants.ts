@@ -4,3 +4,4 @@ export const APPDATA_KEY = "countries";
 export const SEARCH_TERM_KEY = "search_term";
 export const CURRENT_PAGE_KEY = "current_page";
 export const CURRENT_REGION_KEY = "current_region";
+export const SEARCH_PATH_KEY = "search_path";

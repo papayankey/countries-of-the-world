@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ICountry } from "../../data/types";
 import { Box } from "../../shared";
+import { darkTheme } from "../../stitches/darkTheme";
 import CardBody from "./CardBody";
 import CardImage from "./CardImage";
 
@@ -13,15 +14,17 @@ const Card: React.FC<CardProps> = ({ country }) => {
     <Box
       css={{
         position: "relative",
-        bg: "white",
         boxShadow: "$1",
+        [`.${darkTheme} &`]: {
+          boxShadow: "$0"
+        },
         borderRadius: "$2",
         overflow: "hidden",
         transition: "transform 150ms linear",
-        bgcolor: "$white",
+        bgcolor: "$primary",
         "&:hover": {
           transform: "translate(0, -10px)",
-          boxShadow: "$3",
+          boxShadow: "$2",
         },
       }}
     >

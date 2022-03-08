@@ -13,13 +13,10 @@ const ActivityIndicator = styled(Box, {
   position: "relative",
   borderWidth: "$1",
   borderStyle: "solid",
-  borderColor: "$gray300",
-  borderTopColor: "$white",
+  borderColor: "$accent200",
+  borderTopColor: "$accent1",
   borderRadius: "50%",
   animation: `${rotate} 1s linear infinite`,
-  // ${css(({ isDark }) => ({
-  // borderColor: isDark ? 'white' : 'gray300',
-  // borderTopColor: isDark ? 'blue200' : 'gray100',
 });
 
 export default ActivityIndicator;

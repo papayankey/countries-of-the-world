@@ -42,7 +42,7 @@ const Country: React.FC = () => {
 
   return (
     <Container css={{ "@bp1": { px: "$5" }, "@bp2": { px: 0 } }}>
-      <Link to="/countries">
+      <Link to={"/countries"}>
         <Button css={{ mt: "$7" }}>
           <Flex css={{ alignItems: "center" }}>
             <Arrow />

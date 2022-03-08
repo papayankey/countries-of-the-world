@@ -25,11 +25,11 @@ const DropDownMenuItem: React.FC<MenuItemProps> = ({
         fontSize: "$2",
         fontWeight: "$semiBold",
         "&:hover": {
-          backgroundColor: "$gray100",
+          backgroundColor: "$accent200",
         },
       }}
       onClick={() => {
-        handleChangeRegion(Region[region]);
+        handleChangeRegion(Region[region.toUpperCase()]);
         handleIsOpen(false);
       }}
     >

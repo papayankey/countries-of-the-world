@@ -1,9 +1,11 @@
 import { Box } from "../../shared";
 import { css } from "../../stitches";
+import { darkTheme } from "../../stitches/darkTheme";
 
 const Default = css({
-  // fill: isDark ? 'white' : 'none',
-  // stroke: isDark ? 'white' : '#000',
+  [`.${darkTheme} &`]: {
+    fill: "$secondary"
+  },
   strokeLinecap: "round",
   strokeLinejoin: "round",
   strokeWidth: "$6",

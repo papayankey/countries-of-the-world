@@ -1,12 +1,16 @@
 import { Box } from "../../shared";
 import { css } from "../../stitches";
+import { darkTheme } from "../../stitches/darkTheme";
 
 const DefaultSVG = css({
   transition: "transform 100ms linear",
 });
 
 const DefaultPath = css({
-  fill: "hsl(0, 0%, 52%)",
+  fill: "$accent300",
+  [`.${darkTheme} &`]: {
+    fill: "$secondary"
+  }
 });
 
 interface CaretProps {

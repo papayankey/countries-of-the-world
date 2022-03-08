@@ -11,7 +11,7 @@ const CardBody: React.FC<CardBodyProps> = ({ country }) => {
   const { name, population, region, capital } = country;
 
   return (
-    <Box css={{ px: "$4", py: "$7", color: "$black" }}>
+    <Box css={{ px: "$4", py: "$7", color: "$secondary" }}>
       <Typography
         as="h3"
         css={{

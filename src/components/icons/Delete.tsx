@@ -2,11 +2,14 @@ import * as React from "react";
 
 import { Box } from "../../shared";
 import { css } from "../../stitches";
+import { darkTheme } from "../../stitches/darkTheme";
 
 const Defaults = css({
   fill: "none",
-  stroke: "hsl(0, 0%, 52%)",
-  // stroke: isDark ? "hsl(0, 0%, 98%)" : "hsl(0, 0%, 52%)",
+  stroke: "$accent300",
+  [`.${darkTheme} &`]: {
+    stroke: "$secondary",
+  },
   strokeMiterlimit: 10,
   strokeWidth: "32px",
 });
@@ -25,6 +28,7 @@ const Delete: React.FC<DeleteProps> = ({ clearText }) => {
         height: "100%",
         display: "flex",
         alignItems: "center",
+        cursor: "pointer"
       }}
       onClick={() => clearText()}
     >

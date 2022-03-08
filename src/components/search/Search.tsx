@@ -5,6 +5,8 @@ import Delete from "../icons/Delete";
 import Form from "./Form";
 import HandLense from "../icons/HandLense";
 import Input from "./Input";
+import { useLocation } from "react-router-dom";
+import { SEARCH_PATH_KEY } from "../../data/constants";
 
 interface SearchProps {
   onSearch: (text: string) => void;
@@ -14,6 +16,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
   const [text, setText] = React.useState("");
   const [isFocused, setIsFocused] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const location = useLocation();
 
   React.useEffect(() => {
     function activateSearchInput() {
@@ -38,6 +41,9 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     e.preventDefault();
     if (validateText(text)) {
       onSearch(text);
+      let searchPath = `${location.pathname}?search=${text}`;
+      window.history.replaceState(null, "", searchPath);
+      window.localStorage.setItem(SEARCH_PATH_KEY, JSON.stringify(searchPath));
     }
     setText("");
   };
@@ -63,7 +69,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
         <Input
           type="text"
           name="search"
-          placeholder="Search for countries e.g name, region, capital or currency"
+          placeholder="Search for countries"
           value={text}
           onChange={(e) => setText(e.target.value.trim())}
           onFocus={() => setIsFocused(true)}

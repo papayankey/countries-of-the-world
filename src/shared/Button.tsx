@@ -10,7 +10,8 @@ const Button = styled("button", {
   paddingTop: "$1",
   paddingBottom: "$1",
   letterSpacing: "1px",
-  bgcolor: "$white",
+  bgcolor: "$primary",
+  color: "$secondary",
   cursor: "pointer",
 
   variants: {
@@ -18,7 +19,7 @@ const Button = styled("button", {
       primary: {
         boxShadow: "$2",
         "&:hover": {
-          boxShadow: "$1",
+          boxShadow: "$0",
         },
       },
       secondary: {

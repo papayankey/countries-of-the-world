@@ -1,10 +1,13 @@
 import { ComponentProps } from "react";
 import { css } from "../../stitches";
+import { darkTheme } from "../../stitches/darkTheme";
 
 const Defaults = css({
   fill: "none",
-  // stroke: isDark ? 'hsl(0, 0%, 98%)' : '#000',
-  stroke: "$gray300",
+  stroke: "$accent300",
+  [`.${darkTheme} &`]: {
+    stroke: "$secondary"
+  },
   strokeLinecap: "round",
   strokeLinejoin: "round",
   strokeWidth: "30px",

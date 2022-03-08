@@ -2,15 +2,19 @@ import * as React from "react";
 import { Box, Container, Flex, Typography } from "../shared/index";
 import { Moon } from "./icons";
 
-const AppBar: React.FC = () => {
+interface AppBarProps {
+  handleThemeToggle: () => void;
+}
+
+const AppBar: React.FC<AppBarProps> = ({ handleThemeToggle }) => {
   return (
     <Box
       css={{
         height: "$8",
-        // boxShadow={isDark ? '0 0 6px 4px hsl(207, 26%, 17%)' : 'md'}
         boxShadow: "$2",
-        bgcolor: "$white",
+        bgcolor: "$primary",
         borderRadius: "none",
+        color: "$secondary",
       }}
     >
       <Container>
@@ -36,7 +40,10 @@ const AppBar: React.FC = () => {
           >
             Where in the world?
           </Typography>
-          <Flex css={{ alignItems: "center", cursor: "pointer" }}>
+          <Flex
+            css={{ alignItems: "center", cursor: "pointer" }}
+            onClick={handleThemeToggle}
+          >
             <Moon />
             <Typography as="h1" css={{ color: "$light" }}>
               Dark Mode

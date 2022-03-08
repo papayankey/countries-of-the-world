@@ -6,7 +6,7 @@ import DropDownMenuItem from "./DropDownMenuItem";
 import DropDownTrigger from "./DropDownTrigger";
 
 // regions
-const Regions = ["ALL", "AFRICA", "AMERICAS", "ASIA", "EUROPE", "OCEANIA"];
+const Regions = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 interface SelectProps {
   onChangeRegion: (region: Region) => void;
@@ -24,7 +24,7 @@ const DropDown: React.FC<SelectProps> = ({ onChangeRegion }) => {
   };
 
   return (
-    <Box css={{ position: "relative", mt: "$3" }}>
+    <Box css={{ position: "relative", mt: "$3", color: "$secondary" }}>
       <DropDownTrigger isOpen={isOpen} handleIsOpen={handleIsOpen} />
       <DropDownMenu isOpen={isOpen}>
         {Regions.map((region, index) => (

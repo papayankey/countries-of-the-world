@@ -1,4 +1,5 @@
 import { styled } from "../stitches";
+import { darkTheme } from "../stitches/darkTheme";
 
 const Button = styled("button", {
   appearance: "none",
@@ -24,6 +25,9 @@ const Button = styled("button", {
       },
       secondary: {
         boxShadow: "$1",
+        [`.${darkTheme} &`]: {
+          boxShadow: "$0"
+        }
       },
     },
   },

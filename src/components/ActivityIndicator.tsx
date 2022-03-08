@@ -1,6 +1,7 @@
 import { keyframes, styled } from "../stitches";
 
 import { Box } from "../shared";
+import { darkTheme } from "../stitches/darkTheme";
 
 const rotate = keyframes({
   from: { transform: "rotate(0)" },
@@ -13,8 +14,12 @@ const ActivityIndicator = styled(Box, {
   position: "relative",
   borderWidth: "$1",
   borderStyle: "solid",
-  borderColor: "$accent200",
-  borderTopColor: "$accent1",
+  borderColor: "$accent300",
+  borderTopColor: "$accent200",
+  [`.${darkTheme} &`]: {
+    borderColor: "$secondary",
+    borderTopColor: "$primary"
+  },
   borderRadius: "50%",
   animation: `${rotate} 1s linear infinite`,
 });

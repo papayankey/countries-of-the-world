@@ -58,7 +58,7 @@ const Countries: React.FC = () => {
   const filterBySearchTerm = (searchInput: string): ICountry[] => {
     const augmentedData: ICountry[] = [];
     let options: Fuse.IFuseOptions<ICountry> = {
-      keys: ["name.common", "name.offical", "region", "subregion", "capital"],
+      keys: ["name.common", "name.offical", "region", "subregion", "capital", "capital[0]"],
     };
 
     let fuse = new Fuse<ICountry>(data, options);

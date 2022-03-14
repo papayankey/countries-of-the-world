@@ -17,6 +17,7 @@ const Input = styled("input", {
   },
   
   [`.${darkTheme} &`]: {
+    color: "$secondary",
     boxShadow: "$0",
     "&::placeholder": {
       color: "$secondary"

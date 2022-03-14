@@ -42,7 +42,6 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     if (validateText(text)) {
       onSearch(text);
       let searchPath = `${location.pathname}?search=${text}`;
-      window.history.replaceState(null, "", searchPath);
       window.localStorage.setItem(SEARCH_PATH_KEY, JSON.stringify(searchPath));
     }
     setText("");
